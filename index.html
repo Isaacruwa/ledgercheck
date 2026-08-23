@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EOBCheck — Does Your Medical Bill Match Your EOB?</title>
+<meta name="description" content="Enter what your medical bill says and what your EOB says. EOBCheck shows exactly where they disagree, checks Good Faith Estimate rules, and drafts your dispute letter — free, in your browser.">
+<meta name="theme-color" content="#1F4B44">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/svg+xml" href="icon.svg">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="canonical" href="https://eobcheck.online/">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="EOBCheck — Does Your Medical Bill Match Your EOB?">
+<meta property="og:description" content="Free tool: compare your medical bill to your EOB, spot unexplained charges, and generate a dispute letter in minutes.">
+<meta property="og:url" content="https://eobcheck.online/">
+<meta property="og:image" content="https://eobcheck.online/icon.svg">
+<meta property="og:site_name" content="EOBCheck">
+<meta name="twitter:card" content="summary">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why doesn't my medical bill match my EOB?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your provider's bill and your insurer's Explanation of Benefits (EOB) are produced by two different systems that don't always sync in real time. Common causes of a mismatch include balance billing, duplicate line items, charges submitted before your insurer finished processing the claim, or coding differences between what the provider billed and what the insurer allowed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is an EOB (Explanation of Benefits)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An EOB is the statement your insurance company sends after processing a claim. It shows the amount billed, the amount your plan allows, what insurance paid, and what it calculates as your patient responsibility. It is not a bill — it's your insurer's record of the claim."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a Good Faith Estimate, and when can I dispute a bill?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A Good Faith Estimate is a cost estimate that uninsured and self-pay patients are generally entitled to receive before a scheduled service. If your final bill comes in substantially higher than that estimate, you may be eligible to challenge it through a federal dispute process — eligibility depends on the size of the gap and other requirements, so it's worth verifying your specific situation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does EOBCheck store my medical or billing information?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. EOBCheck runs entirely in your browser. The numbers you enter are used to calculate your reconciliation and letter on your own device and are not sent to a server."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is EOBCheck legal, financial, or medical billing advice?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. EOBCheck is an informational tool that checks arithmetic and flags common patterns. It does not replace a licensed patient advocate, attorney, or accountant, and you should verify anything time-sensitive or high-stakes with a professional."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "EOBCheck",
+      "url": "https://eobcheck.online/",
+      "logo": "https://eobcheck.online/icon.svg",
+      "description": "Free browser-based tool that reconciles a medical bill against an insurer's Explanation of Benefits and generates a dispute letter."
+    },
+    {
+      "@type": "WebSite",
+      "name": "EOBCheck",
+      "url": "https://eobcheck.online/"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "EOBCheck",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any (web browser)",
+      "description": "Compares a medical provider bill to an insurance Explanation of Benefits (EOB), flags unexplained differences, checks Good Faith Estimate dispute eligibility, and generates an editable dispute letter. Runs entirely client-side.",
+      "offers": [
+        { "@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "USD" },
+        { "@type": "Offer", "name": "Full Report", "price": "9.99", "priceCurrency": "USD" },
+        { "@type": "Offer", "name": "Complex Bill", "priceSpecification": { "@type": "PriceSpecification", "minPrice": "29", "maxPrice": "49", "priceCurrency": "USD" } }
+      ]
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#EFF2F0;
+    --paper-dim:#E3E9E4;
+    --card:#FBFCFB;
+    --ink:#182420;
+    --ink-soft:#515D57;
+    --teal:#1F4B44;
+    --teal-deep:#12332E;
+    --red:#B8412B;
+    --red-soft:#F5DFD9;
+    --amber:#A5722B;
+    --amber-soft:#F3E7D3;
+    --green:#3B6E52;
+    --green-soft:#DDE9E0;
+    --line:#CBD4CE;
+    --white:#FFFFFF;
+    --radius:10px;
+    --font-display:'Fraunces', Georgia, serif;
+    --font-body:'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+    --font-mono:'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;} }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+  h1,h2,h3{font-family:var(--font-display); font-weight:600; margin:0 0 .4em; letter-spacing:-0.01em; color:var(--teal-deep);}
+  h1{font-size:clamp(2.1rem, 4.4vw, 3.4rem); line-height:1.06;}
+  h2{font-size:clamp(1.5rem, 2.6vw, 2.1rem);}
+  h3{font-size:1.1rem;}
+  p{margin:0 0 1em;}
+  .eyebrow{
+    font-family:var(--font-mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--teal); font-weight:600; margin-bottom:.6em; display:block;
+  }
+  a{color:var(--teal);}
+  .num{font-family:var(--font-mono); font-variant-numeric:tabular-nums;}
+
+  /* buttons */
+  .btn{
+    font-family:var(--font-body); font-weight:600; font-size:.95rem;
+    border-radius:999px; padding:.85em 1.6em; border:1.5px solid transparent;
+    cursor:pointer; display:inline-flex; align-items:center; gap:.5em; text-decoration:none;
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  .btn:focus-visible{outline:3px solid var(--amber); outline-offset:2px;}
+  .btn-primary{background:var(--teal); color:var(--white);}
+  .btn-primary:hover{background:var(--teal-deep); transform:translateY(-1px);}
+  .btn-ghost{background:transparent; color:var(--teal); border-color:var(--line);}
+  .btn-ghost:hover{border-color:var(--teal);}
+  .btn-sm{padding:.55em 1.1em; font-size:.85rem; border-radius:8px;}
+  .btn:disabled{opacity:.45; cursor:not-allowed; transform:none;}
+
+  /* header */
+  header.site{
+    position:sticky; top:0; z-index:50; background:rgba(239,242,240,.92); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:16px 0;}
+  .logo{display:flex; align-items:center; gap:.55em; font-family:var(--font-display); font-weight:600; font-size:1.25rem; color:var(--teal-deep);}
+  .logo .mark{width:26px; height:26px; border-radius:6px; background:var(--teal); position:relative; flex:none;}
+  .logo .mark::before,.logo .mark::after{content:""; position:absolute; left:5px; right:5px; height:2.5px; background:var(--paper); border-radius:2px;}
+  .logo .mark::before{top:8px;}
+  .logo .mark::after{top:14px; right:9px;}
+  nav.links{display:flex; gap:26px; align-items:center;}
+  nav.links a{color:var(--ink-soft); text-decoration:none; font-size:.92rem; font-weight:500;}
+  nav.links a:hover{color:var(--teal);}
+  .nav-cta{display:flex; align-items:center; gap:14px;}
+  .nav-links-mobile{display:none;}
+  @media(max-width:760px){ nav.links{display:none;} }
+
+  /* hero */
+  .hero{padding:64px 0 40px;}
+  .hero-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center;}
+  @media(max-width:900px){.hero-grid{grid-template-columns:1fr;}}
+  .hero p.lede{font-size:1.15rem; color:var(--ink-soft); max-width:46ch;}
+  .hero-ctas{display:flex; gap:14px; align-items:center; margin-top:1.6em; flex-wrap:wrap;}
+  .hero-note{font-size:.82rem; color:var(--ink-soft); margin-top:1em;}
+
+  /* the reconciliation strip - signature element */
+  .strip-card{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:26px 26px 22px; box-shadow:0 1px 0 rgba(18,51,46,.03), 0 12px 32px -18px rgba(18,51,46,.28);
+  }
+  .strip-label{font-family:var(--font-mono); font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-soft); display:flex; justify-content:space-between;}
+  .strip-row{display:flex; justify-content:space-between; align-items:baseline; padding:14px 0; border-bottom:1px dashed var(--line);}
+  .strip-row .rlabel{font-size:.92rem; color:var(--ink-soft);}
+  .strip-row .rval{font-family:var(--font-mono); font-size:1.3rem; font-weight:600;}
+  .strip-variance{
+    margin-top:6px; padding:16px; border-radius:8px; background:var(--red-soft); color:var(--red);
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .strip-variance .rval{font-size:1.55rem; font-weight:700;}
+  .strip-variance .flag{font-family:var(--font-mono); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase;}
+  .strip-foot{font-size:.8rem; color:var(--ink-soft); margin-top:14px;}
+
+  /* sections */
+  section{padding:76px 0;}
+  section.alt{background:var(--paper-dim); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .section-head{max-width:640px; margin-bottom:44px;}
+
+  /* steps (legit sequence) */
+  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:30px;}
+  @media(max-width:820px){.steps{grid-template-columns:1fr;}}
+  .step{position:relative; padding-left:0;}
+  .step .n{font-family:var(--font-mono); font-size:.85rem; color:var(--teal); border:1px solid var(--teal); width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-bottom:16px;}
+  .step p{color:var(--ink-soft); font-size:.95rem;}
+
+  /* why they disagree cards */
+  .cards{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
+  @media(max-width:900px){.cards{grid-template-columns:1fr 1fr;}}
+  @media(max-width:560px){.cards{grid-template-columns:1fr;}}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:22px;}
+  .card h3{margin-bottom:.4em;}
+  .card p{font-size:.9rem; color:var(--ink-soft); margin:0;}
+
+  /* app tool */
+  .app-shell{background:var(--card); border:1px solid var(--line); border-radius:14px; overflow:hidden; box-shadow:0 20px 50px -30px rgba(18,51,46,.35);}
+  .app-tabs{display:flex; border-bottom:1px solid var(--line); background:var(--paper-dim);}
+  .app-tab{flex:1; text-align:center; padding:14px 8px; font-family:var(--font-mono); font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); background:none; border:none; cursor:pointer; border-bottom:2.5px solid transparent;}
+  .app-tab.active{color:var(--teal-deep); border-bottom-color:var(--teal); background:var(--card);}
+  .app-tab[disabled]{opacity:.4; cursor:not-allowed;}
+  .app-body{padding:32px;}
+  @media(max-width:640px){.app-body{padding:22px 18px;}}
+  .screen{display:none;}
+  .screen.active{display:block; animation:fade .25s ease;}
+  @keyframes fade{from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);}}
+
+  .field-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  @media(max-width:560px){.field-grid{grid-template-columns:1fr;}}
+  .field{display:flex; flex-direction:column; gap:6px;}
+  .field label{font-size:.85rem; font-weight:600; color:var(--ink);}
+  .field .hint{font-size:.78rem; color:var(--ink-soft); font-weight:400;}
+  .field input, .field textarea{
+    font-family:var(--font-mono); font-size:1rem; padding:.7em .8em; border-radius:8px;
+    border:1.5px solid var(--line); background:var(--white); color:var(--ink);
+  }
+  .field input:focus, .field textarea:focus{outline:none; border-color:var(--teal); box-shadow:0 0 0 3px rgba(31,75,68,.12);}
+  .field textarea{font-family:var(--font-body); resize:vertical; min-height:90px;}
+  .optional-tag{font-family:var(--font-body); font-weight:500; font-size:.72rem; color:var(--ink-soft); background:var(--paper-dim); padding:.15em .6em; border-radius:999px; margin-left:.4em;}
+
+  .app-actions{display:flex; justify-content:space-between; align-items:center; margin-top:28px; gap:12px; flex-wrap:wrap;}
+
+  /* report */
+  .report-total{
+    display:flex; justify-content:space-between; align-items:center; padding:20px; border-radius:10px; margin-bottom:22px;
+  }
+  .report-total.flag-red{background:var(--red-soft); color:var(--red);}
+  .report-total.flag-amber{background:var(--amber-soft); color:var(--amber);}
+  .report-total.flag-green{background:var(--green-soft); color:var(--green);}
+  .report-total .amt{font-family:var(--font-mono); font-size:1.9rem; font-weight:700;}
+  .report-total .tag{font-family:var(--font-mono); font-size:.72rem; text-transform:uppercase; letter-spacing:.08em;}
+
+  .flag-list{display:flex; flex-direction:column; gap:12px; margin-bottom:24px;}
+  .flag-item{display:flex; gap:14px; padding:16px; border:1px solid var(--line); border-radius:8px; background:var(--white);}
+  .flag-dot{width:12px; height:12px; border-radius:50%; margin-top:4px; flex:none;}
+  .flag-item.red .flag-dot{background:var(--red);}
+  .flag-item.amber .flag-dot{background:var(--amber);}
+  .flag-item.green .flag-dot{background:var(--green);}
+  .flag-item .ftitle{font-weight:600; margin-bottom:2px;}
+  .flag-item .fdesc{font-size:.88rem; color:var(--ink-soft);}
+
+  .gfe-banner{border:1.5px solid var(--amber); background:var(--amber-soft); border-radius:8px; padding:16px 18px; margin-bottom:24px; font-size:.92rem;}
+  .gfe-banner strong{display:block; margin-bottom:4px;}
+
+  .letter-box{background:var(--white); border:1px solid var(--line); border-radius:8px; padding:18px;}
+  .letter-box textarea{width:100%; min-height:340px; font-family:var(--font-mono); font-size:.88rem; line-height:1.6; border:none; resize:vertical; background:transparent; color:var(--ink);}
+  .letter-box textarea:focus{outline:none;}
+  .letter-actions{display:flex; gap:10px; margin-top:14px; flex-wrap:wrap;}
+  .copy-msg{font-size:.82rem; color:var(--green); margin-left:6px; opacity:0; transition:opacity .2s;}
+  .copy-msg.show{opacity:1;}
+
+  .checklist{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px;}
+  .checklist li{display:flex; gap:10px; align-items:flex-start; font-size:.92rem;}
+  .checklist li::before{content:"→"; color:var(--teal); font-weight:700; flex:none;}
+
+  /* pricing */
+  .pricing{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  @media(max-width:860px){.pricing{grid-template-columns:1fr;}}
+  .price-card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:28px; display:flex; flex-direction:column;}
+  .price-card.featured{border-color:var(--teal); box-shadow:0 16px 40px -26px rgba(18,51,46,.4);}
+  .price-card .ptag{font-family:var(--font-mono); font-size:.7rem; text-transform:uppercase; letter-spacing:.1em; color:var(--teal); margin-bottom:10px;}
+  .price-card .pamt{font-family:var(--font-mono); font-size:2rem; font-weight:700; margin-bottom:4px;}
+  .price-card .pdesc{color:var(--ink-soft); font-size:.9rem; margin-bottom:18px;}
+  .price-card ul{list-style:none; padding:0; margin:0 0 22px; display:flex; flex-direction:column; gap:9px; font-size:.9rem; flex:1;}
+  .price-card ul li::before{content:"✓ "; color:var(--teal); font-weight:700;}
+
+  /* faq */
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-q{width:100%; text-align:left; background:none; border:none; padding:20px 0; font-family:var(--font-body); font-weight:600; font-size:1rem; color:var(--ink); cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:16px;}
+  .faq-q .plus{font-family:var(--font-mono); color:var(--teal); font-size:1.2rem; flex:none;}
+  .faq-a{display:none; padding-bottom:20px; color:var(--ink-soft); font-size:.94rem; max-width:70ch;}
+  .faq-item.open .faq-a{display:block;}
+  .faq-item.open .plus{transform:rotate(45deg);}
+
+  footer{padding:40px 0 60px; border-top:1px solid var(--line);}
+  footer .foot-grid{display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; align-items:flex-start;}
+  .disclaimer{font-size:.8rem; color:var(--ink-soft); max-width:60ch;}
+  .foot-links{display:flex; gap:18px; font-size:.85rem;}
+  .foot-links a{text-decoration:none; color:var(--ink-soft);}
+  .foot-links a:hover{color:var(--teal);}
+
+  .install-toast{
+    position:fixed; bottom:20px; left:50%; transform:translateX(-50%) translateY(120%);
+    background:var(--teal-deep); color:var(--white); padding:14px 20px; border-radius:10px;
+    display:flex; gap:14px; align-items:center; font-size:.88rem; z-index:100; transition:transform .3s ease;
+    box-shadow:0 12px 30px -10px rgba(0,0,0,.4);
+  }
+  .install-toast.show{transform:translateX(-50%) translateY(0);}
+  .install-toast button{color:var(--white); border-color:rgba(255,255,255,.4);}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo"><span class="mark" aria-hidden="true"></span> EOBCheck</div>
+    <nav class="links">
+      <a href="#how">How it works</a>
+      <a href="#app">Check your bill</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#app" class="btn btn-primary btn-sm">Check my bill</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Free · No account · Runs in your browser</span>
+        <h1>Does your medical bill actually match your EOB?</h1>
+        <p class="lede">Enter what the provider billed and what your insurer's Explanation of Benefits says. EOBCheck reconciles the two, flags anything that doesn't add up, and drafts the letter to ask why.</p>
+        <div class="hero-ctas">
+          <a href="#app" class="btn btn-primary">Check my bill — free</a>
+          <a href="#how" class="btn btn-ghost">See how it works ↓</a>
+        </div>
+        <p class="hero-note">Nothing you enter leaves your device. This is an informational tool, not legal or financial advice.</p>
+      </div>
+      <div>
+        <div class="strip-card">
+          <div class="strip-label"><span>Example reconciliation</span><span>Sample</span></div>
+          <div class="strip-row"><span class="rlabel">Provider bill — amount you owe</span><span class="rval num" id="demoBill">$0</span></div>
+          <div class="strip-row" style="border-bottom:none;"><span class="rlabel">EOB — patient responsibility</span><span class="rval num" id="demoEob">$0</span></div>
+          <div class="strip-variance">
+            <div><span class="flag">Unexplained variance</span></div>
+            <div class="rval num" id="demoVar">$0</div>
+          </div>
+          <p class="strip-foot">Same claim, two different numbers — EOBCheck shows why.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">How it works</span>
+        <h2>Three steps, about a minute</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="n">1</div>
+          <h3>Enter your numbers</h3>
+          <p>Type in what your bill says and what your EOB says. No upload, no login, no waiting on hold.</p>
+        </div>
+        <div class="step">
+          <div class="n">2</div>
+          <h3>Get your reconciliation</h3>
+          <p>EOBCheck compares both documents and flags anything unexplained, in plain English — not insurance jargon.</p>
+        </div>
+        <div class="step">
+          <div class="n">3</div>
+          <h3>Send your dispute</h3>
+          <p>Download a letter asking your provider to explain or correct the difference, personalized to your numbers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Why this happens</span>
+        <h2>Bills and EOBs disagree more often than you'd think</h2>
+      </div>
+      <div class="cards">
+        <div class="card"><h3>Balance billing</h3><p>A provider bills you directly for an amount your insurer never assigned as your responsibility.</p></div>
+        <div class="card"><h3>Timing mismatches</h3><p>The bill goes out before the insurer finishes processing, so the numbers were never going to match.</p></div>
+        <div class="card"><h3>Duplicate charges</h3><p>The same service or supply appears more than once on the itemized statement.</p></div>
+        <div class="card"><h3>Coding differences</h3><p>What the provider billed and what the insurer allowed were coded differently for the same visit.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="app" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">The tool</span>
+        <h2>Check your bill</h2>
+        <p style="color:var(--ink-soft);">Have your provider bill and your EOB nearby. You only need the totals — line items are optional.</p>
+      </div>
+
+      <div class="app-shell">
+        <div class="app-tabs">
+          <button class="app-tab active" data-tab="bill" id="tabbtn-bill">1 · Bill</button>
+          <button class="app-tab" data-tab="eob" id="tabbtn-eob">2 · EOB</button>
+          <button class="app-tab" data-tab="estimate" id="tabbtn-estimate">3 · Estimate <span class="optional-tag">optional</span></button>
+          <button class="app-tab" data-tab="report" id="tabbtn-report" disabled>4 · Report</button>
+        </div>
+
+        <div class="app-body">
+
+          <!-- SCREEN: BILL -->
+          <div class="screen active" id="screen-bill">
+            <h3>What the provider billed</h3>
+            <div class="field-grid">
+              <div class="field">
+                <label for="providerName">Provider or facility name <span class="optional-tag">optional</span></label>
+                <input type="text" id="providerName" placeholder="e.g. Riverside Medical Center">
+              </div>
+              <div class="field">
+                <label for="billDate">Bill date <span class="optional-tag">optional</span></label>
+                <input type="date" id="billDate">
+              </div>
+              <div class="field">
+                <label for="billTotal">Total amount billed</label>
+                <input type="number" inputmode="decimal" id="billTotal" placeholder="0.00">
+              </div>
+              <div class="field">
+                <label for="billOwe">Amount the bill says you owe</label>
+                <input type="number" inputmode="decimal" id="billOwe" placeholder="0.00">
+                <span class="hint">Sometimes labeled "patient balance" or "amount due."</span>
+              </div>
+            </div>
+            <div class="app-actions">
+              <span></span>
+              <button class="btn btn-primary" id="toEob">Next: enter your EOB →</button>
+            </div>
+          </div>
+
+          <!-- SCREEN: EOB -->
+          <div class="screen" id="screen-eob">
+            <h3>What your EOB says</h3>
+            <div class="field-grid">
+              <div class="field">
+                <label for="eobTotal">Total amount billed (per insurer)</label>
+                <input type="number" inputmode="decimal" id="eobTotal" placeholder="0.00">
+              </div>
+              <div class="field">
+                <label for="eobAllowed">Allowed amount</label>
+                <input type="number" inputmode="decimal" id="eobAllowed" placeholder="0.00">
+              </div>
+              <div class="field">
+                <label for="eobPaid">Insurance paid</label>
+                <input type="number" inputmode="decimal" id="eobPaid" placeholder="0.00">
+              </div>
+              <div class="field">
+                <label for="eobOwe">Patient responsibility (per EOB)</label>
+                <input type="number" inputmode="decimal" id="eobOwe" placeholder="0.00">
+              </div>
+            </div>
+            <div class="app-actions">
+              <button class="btn btn-ghost" id="backToBill">← Back</button>
+              <button class="btn btn-primary" id="toEstimate">Next: Good Faith Estimate →</button>
+            </div>
+          </div>
+
+          <!-- SCREEN: ESTIMATE -->
+          <div class="screen" id="screen-estimate">
+            <h3>Good Faith Estimate <span class="optional-tag">optional</span></h3>
+            <p style="color:var(--ink-soft); font-size:.92rem;">If you're uninsured or self-pay and received a written cost estimate before treatment, enter it here — we'll check it against the federal $400 dispute threshold.</p>
+            <div class="field-grid">
+              <div class="field">
+                <label for="gfeTotal">Estimated total from your Good Faith Estimate</label>
+                <input type="number" inputmode="decimal" id="gfeTotal" placeholder="0.00">
+              </div>
+              <div class="field">
+                <label for="patientName">Your name (for the letter) <span class="optional-tag">optional</span></label>
+                <input type="text" id="patientName" placeholder="e.g. Jordan Smith">
+              </div>
+            </div>
+            <div class="app-actions">
+              <button class="btn btn-ghost" id="backToEob">← Back</button>
+              <button class="btn btn-primary" id="toReport">Reconcile my bill →</button>
+            </div>
+          </div>
+
+          <!-- SCREEN: REPORT -->
+          <div class="screen" id="screen-report">
+            <h3>Your reconciliation report</h3>
+            <div id="reportTotal" class="report-total"></div>
+            <div class="flag-list" id="flagList"></div>
+            <div id="gfeBanner"></div>
+
+            <h3 style="margin-top:32px;">Your dispute letter</h3>
+            <p style="color:var(--ink-soft); font-size:.9rem;">Generated from your numbers. Edit anything before you send it.</p>
+            <div class="letter-box">
+              <textarea id="letterText" aria-label="Generated dispute letter"></textarea>
+              <div class="letter-actions">
+                <button class="btn btn-primary btn-sm" id="copyLetter">Copy letter</button>
+                <button class="btn btn-ghost btn-sm" id="downloadLetter">Download as .txt</button>
+                <span class="copy-msg" id="copyMsg">Copied ✓</span>
+              </div>
+            </div>
+
+            <h3 style="margin-top:32px;">What to do next</h3>
+            <ul class="checklist" id="checklist"></ul>
+
+            <div class="app-actions">
+              <button class="btn btn-ghost" id="startOver">Start a new bill</button>
+              <span></span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Pricing</span>
+        <h2>Start free. Pay only for the complicated ones.</h2>
+      </div>
+      <div class="pricing">
+        <div class="price-card">
+          <span class="ptag">Free</span>
+          <div class="pamt">$0</div>
+          <p class="pdesc">One bill, one EOB.</p>
+          <ul>
+            <li>Total-level reconciliation</li>
+            <li>Red / amber / green flags</li>
+            <li>Plain-English explanation</li>
+            <li>One dispute letter</li>
+          </ul>
+          <a href="#app" class="btn btn-ghost">Check my bill</a>
+        </div>
+        <div class="price-card featured">
+          <span class="ptag">Full report</span>
+          <div class="pamt">$9.99</div>
+          <p class="pdesc">One bill, fully itemized.</p>
+          <ul>
+            <li>Everything in Free</li>
+            <li>Line-item reconciliation</li>
+            <li>Good Faith Estimate dispute check</li>
+            <li>Detailed, editable dispute letter</li>
+          </ul>
+          <a href="#app" class="btn btn-primary">Get the full report</a>
+        </div>
+        <div class="price-card">
+          <span class="ptag">Complex bill</span>
+          <div class="pamt">$29–49</div>
+          <p class="pdesc">Multiple EOBs or providers.</p>
+          <ul>
+            <li>Everything in Full report</li>
+            <li>Multiple bills reconciled together</li>
+            <li>Combined variance summary</li>
+            <li>One letter per provider</li>
+          </ul>
+          <a href="#app" class="btn btn-ghost">Get started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">FAQ</span>
+        <h2>Common questions</h2>
+      </div>
+      <div id="faqList" style="max-width:760px;">
+        <div class="faq-item open">
+          <button class="faq-q">Why doesn't my medical bill match my EOB? <span class="plus">+</span></button>
+          <div class="faq-a">Your provider's bill and your insurer's Explanation of Benefits are produced by two different systems that don't always sync in real time. Common causes include balance billing, duplicate line items, charges sent before the insurer finished processing the claim, or coding differences between what was billed and what was allowed.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">What is an EOB? <span class="plus">+</span></button>
+          <div class="faq-a">An EOB, or Explanation of Benefits, is the statement your insurer sends after processing a claim. It shows the amount billed, the allowed amount, what insurance paid, and what it calculates as your patient responsibility. It is not a bill — it's your insurer's record of the claim.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">What is a Good Faith Estimate, and when can I dispute a bill? <span class="plus">+</span></button>
+          <div class="faq-a">A Good Faith Estimate is a cost estimate that uninsured and self-pay patients are generally entitled to receive before a scheduled service. If your final bill is substantially higher than that estimate, you may be eligible to challenge it through a federal dispute process. Eligibility depends on the size of the gap and other requirements, so verify your specific situation before relying on this.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Does EOBCheck store my information? <span class="plus">+</span></button>
+          <div class="faq-a">No. EOBCheck runs entirely in your browser. The numbers you enter are used to calculate your reconciliation and letter on your own device and are never sent to a server.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Is this legal or financial advice? <span class="plus">+</span></button>
+          <div class="faq-a">No. EOBCheck is an informational tool that checks arithmetic and flags common patterns — it does not replace a licensed patient advocate, attorney, or accountant. For anything time-sensitive or high-stakes, confirm with a professional.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">What's your refund policy? <span class="plus">+</span></button>
+          <div class="faq-a">Paid tiers aren't available for purchase yet. Once checkout is live, refund requests within 14 days of purchase for an unused report are eligible for a full refund. See the full <a href="/refund-policy">Refund Policy</a> for details.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <div class="logo" style="margin-bottom:10px;"><span class="mark" aria-hidden="true"></span> EOBCheck</div>
+      <p class="disclaimer">EOBCheck is an informational tool, not legal, financial, or medical billing advice. It does not access your accounts, contact providers on your behalf, or guarantee any outcome. Runs entirely in your browser — your numbers are never uploaded.</p>
+      <p class="disclaimer" style="margin-top:10px;">© 2026 <span style="color:var(--teal); font-weight:600;">[Your Business Name]</span>. Support: <a href="mailto:support@eobcheck.online">support@eobcheck.online</a></p>
+    </div>
+    <div class="foot-links">
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/refund-policy">Refunds</a>
+      <a href="/sitemap">Site Directory</a>
+    </div>
+  </div>
+</footer>
+
+<div class="install-toast" id="installToast">
+  <span>Install EOBCheck for one-tap access next time.</span>
+  <button class="btn btn-ghost btn-sm" id="installBtn">Install</button>
+  <button class="btn btn-ghost btn-sm" id="dismissInstall">Dismiss</button>
+</div>
+
+<div class="install-toast" id="consentToast" style="bottom:86px;">
+  <span>EOBCheck saves your entries in this browser only, so you don't lose progress. Nothing is sent to a server. See our <a href="/privacy" style="color:#fff; text-decoration:underline;">Privacy Policy</a>.</span>
+  <button class="btn btn-ghost btn-sm" id="consentOk">Got it</button>
+</div>
+
+<script>
+// ---------- Service worker ----------
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  });
+}
+
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  document.getElementById('installToast').classList.add('show');
+});
+document.getElementById('installBtn').addEventListener('click', async () => {
+  document.getElementById('installToast').classList.remove('show');
+  if (deferredPrompt) { deferredPrompt.prompt(); deferredPrompt = null; }
+});
+document.getElementById('dismissInstall').addEventListener('click', () => {
+  document.getElementById('installToast').classList.remove('show');
+});
+
+// ---------- Storage consent notice ----------
+(function(){
+  let seen = false;
+  try { seen = localStorage.getItem('eobcheck-consent-seen') === '1'; } catch(e){}
+  const el = document.getElementById('consentToast');
+  if (!seen && el) {
+    setTimeout(() => el.classList.add('show'), 600);
+  }
+  const okBtn = document.getElementById('consentOk');
+  if (okBtn) okBtn.addEventListener('click', () => {
+    el.classList.remove('show');
+    try { localStorage.setItem('eobcheck-consent-seen', '1'); } catch(e){}
+  });
+})();
+
+// ---------- Hero demo counter ----------
+function fmt(n){
+  const sign = n < 0 ? '-' : '';
+  return sign + '$' + Math.abs(n).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0});
+}
+function animateCount(el, target, duration){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) { el.textContent = fmt(target); return; }
+  const start = performance.now();
+  function step(now){
+    const p = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = fmt(Math.round(target * eased));
+    if (p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+window.addEventListener('DOMContentLoaded', () => {
+  animateCount(document.getElementById('demoBill'), 1842, 900);
+  animateCount(document.getElementById('demoEob'), 1126, 900);
+  animateCount(document.getElementById('demoVar'), 716, 1200);
+});
+
+// ---------- FAQ accordion ----------
+document.querySelectorAll('.faq-item').forEach(item => {
+  item.querySelector('.faq-q').addEventListener('click', () => {
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+
+// ---------- App tool: screen navigation ----------
+const screens = ['bill','eob','estimate','report'];
+function showScreen(name){
+  screens.forEach(s => {
+    document.getElementById('screen-' + s).classList.toggle('active', s === name);
+    document.getElementById('tabbtn-' + s).classList.toggle('active', s === name);
+  });
+}
+document.getElementById('toEob').addEventListener('click', () => showScreen('eob'));
+document.getElementById('backToBill').addEventListener('click', () => showScreen('bill'));
+document.getElementById('toEstimate').addEventListener('click', () => showScreen('estimate'));
+document.getElementById('backToEob').addEventListener('click', () => showScreen('eob'));
+document.getElementById('toReport').addEventListener('click', () => { runReconciliation(); showScreen('report'); document.getElementById('tabbtn-report').disabled = false; });
+document.getElementById('startOver').addEventListener('click', () => {
+  document.querySelectorAll('#app input').forEach(i => i.value = '');
+  document.getElementById('tabbtn-report').disabled = true;
+  showScreen('bill');
+  try { localStorage.removeItem('eobcheck-data'); } catch(e){}
+});
+
+// persist lightweight progress locally (device-only)
+function saveProgress(){
+  try{
+    const data = {};
+    document.querySelectorAll('#app input').forEach(i => data[i.id] = i.value);
+    localStorage.setItem('eobcheck-data', JSON.stringify(data));
+  }catch(e){}
+}
+function loadProgress(){
+  try{
+    const raw = localStorage.getItem('eobcheck-data');
+    if(!raw) return;
+    const data = JSON.parse(raw);
+    Object.keys(data).forEach(id => { const el = document.getElementById(id); if (el) el.value = data[id]; });
+  }catch(e){}
+}
+document.querySelectorAll('#app input').forEach(i => i.addEventListener('change', saveProgress));
+loadProgress();
+
+// ---------- Reconciliation logic ----------
+function num(id){
+  const v = parseFloat(document.getElementById(id).value);
+  return isNaN(v) ? null : v;
+}
+
+function runReconciliation(){
+  const billOwe = num('billOwe');
+  const billTotal = num('billTotal');
+  const eobOwe = num('eobOwe');
+  const eobTotal = num('eobTotal');
+  const eobAllowed = num('eobAllowed');
+  const eobPaid = num('eobPaid');
+  const gfeTotal = num('gfeTotal');
+  const providerName = document.getElementById('providerName').value.trim();
+  const patientName = document.getElementById('patientName').value.trim();
+  const billDate = document.getElementById('billDate').value;
+
+  const flags = [];
+  let variance = null;
+
+  if (billOwe !== null && eobOwe !== null){
+    variance = +(billOwe - eobOwe).toFixed(2);
+  }
+
+  // Total-level flag
+  const totalEl = document.getElementById('reportTotal');
+  if (variance === null){
+    totalEl.className = 'report-total flag-amber';
+    totalEl.innerHTML = `<div><span class="tag">Incomplete</span><div>Enter both "amount you owe" figures for a full comparison.</div></div>`;
+  } else if (Math.abs(variance) < 1){
+    totalEl.className = 'report-total flag-green';
+    totalEl.innerHTML = `<div><span class="tag">Consistent</span><div>Your bill and EOB agree on what you owe.</div></div><div class="amt num">${fmt(Math.abs(variance))}</div>`;
+    flags.push({level:'green', title:'Bill and EOB match', desc:'The patient-responsibility amount on your bill matches your EOB, within a dollar.'});
+  } else if (Math.abs(variance) <= 50){
+    totalEl.className = 'report-total flag-amber';
+    totalEl.innerHTML = `<div><span class="tag">Minor variance</span><div>Small enough it could be rounding, a fee, or a partial payment.</div></div><div class="amt num">${fmt(Math.abs(variance))}</div>`;
+    flags.push({level:'amber', title:'Small unexplained difference', desc:`Your bill and EOB differ by ${fmt(Math.abs(variance))}. Worth a quick call to confirm it isn't a fee or a rounding difference before you pay.`});
+  } else {
+    totalEl.className = 'report-total flag-red';
+    totalEl.innerHTML = `<div><span class="tag">Unexplained variance</span><div>This gap is large enough to ask your provider to explain in writing.</div></div><div class="amt num">${fmt(Math.abs(variance))}</div>`;
+    flags.push({level:'red', title: variance > 0 ? 'You may be billed more than your EOB says you owe' : 'Your EOB shows a higher balance than the bill', desc:`The difference between your bill (${fmt(billOwe)}) and your EOB (${fmt(eobOwe)}) is ${fmt(Math.abs(variance))}. Ask for an itemized statement and a written explanation before paying.`});
+  }
+
+  // Bill total vs EOB total
+  if (billTotal !== null && eobTotal !== null && Math.abs(billTotal - eobTotal) > 1){
+    const diff = +(billTotal - eobTotal).toFixed(2);
+    flags.push({level:'amber', title:'Billed totals do not match', desc:`Your provider billed ${fmt(billTotal)}, but your EOB shows ${fmt(eobTotal)} as billed. This can happen when claims are split or resubmitted — worth confirming which claim this bill reflects.`});
+  }
+
+  // Allowed vs paid vs owe sanity check
+  if (eobAllowed !== null && eobPaid !== null && eobOwe !== null){
+    const expectedOwe = +(eobAllowed - eobPaid).toFixed(2);
+    if (Math.abs(expectedOwe - eobOwe) > 1){
+      flags.push({level:'amber', title:'EOB math looks off', desc:`Allowed amount (${fmt(eobAllowed)}) minus insurance paid (${fmt(eobPaid)}) is ${fmt(expectedOwe)}, but your EOB lists patient responsibility as ${fmt(eobOwe)}. This is worth a call to your insurer to clarify.`});
+    }
+  }
+
+  if (flags.length === 0){
+    flags.push({level:'green', title:'Nothing flagged yet', desc:'Enter both bill and EOB totals above to generate a full reconciliation.'});
+  }
+
+  const flagList = document.getElementById('flagList');
+  flagList.innerHTML = flags.map(f => `
+    <div class="flag-item ${f.level}">
+      <span class="flag-dot"></span>
+      <div><div class="ftitle">${f.title}</div><div class="fdesc">${f.desc}</div></div>
+    </div>
+  `).join('');
+
+  // GFE banner
+  const gfeBanner = document.getElementById('gfeBanner');
+  gfeBanner.innerHTML = '';
+  let gfeEligible = false;
+  if (gfeTotal !== null && billOwe !== null){
+    const gfeDiff = +(billOwe - gfeTotal).toFixed(2);
+    if (gfeDiff >= 400){
+      gfeEligible = true;
+      gfeBanner.innerHTML = `<div class="gfe-banner"><strong>You may be eligible for a Good Faith Estimate dispute.</strong>Your bill is ${fmt(gfeDiff)} more than your Good Faith Estimate (${fmt(gfeTotal)}), which is at or above the federal $400 threshold. Eligibility depends on additional requirements (such as being uninsured or self-pay and filing within the applicable window) — verify your specific situation before filing.</div>`;
+    } else {
+      gfeBanner.innerHTML = `<div class="gfe-banner"><strong>Below the Good Faith Estimate dispute threshold.</strong>Your bill is ${fmt(Math.max(gfeDiff,0))} above your estimate, which is under the $400 federal threshold typically required to dispute.</div>`;
+    }
+  }
+
+  // Checklist
+  const checklist = document.getElementById('checklist');
+  const items = [];
+  if (variance !== null && Math.abs(variance) >= 1){
+    items.push('Request an itemized statement from the provider before paying anything.');
+    items.push('Call your insurer\'s member services line and ask them to confirm your patient responsibility in writing.');
+  }
+  if (gfeEligible){
+    items.push('Look up your state\'s Patient-Provider Dispute Resolution process for Good Faith Estimate disputes.');
+  }
+  items.push('Ask your provider to place a hold on collections while the discrepancy is under review.');
+  items.push('Keep a copy of your bill, EOB, and any written responses in one place.');
+  checklist.innerHTML = items.map(i => `<li>${i}</li>`).join('');
+
+  // Letter
+  document.getElementById('letterText').value = buildLetter({
+    providerName, patientName, billDate, billOwe, eobOwe, variance, gfeTotal, gfeEligible
+  });
+}
+
+function buildLetter(d){
+  const today = new Date().toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'});
+  const provider = d.providerName || '[Provider / Billing Department]';
+  const patient = d.patientName || '[Your name]';
+  const dateLine = d.billDate ? new Date(d.billDate).toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'}) : '[bill date]';
+
+  let body = `${today}\n\nTo: ${provider}\nRe: Billing inquiry — discrepancy between bill and Explanation of Benefits\n\nTo whom it may concern,\n\n`;
+
+  if (d.billOwe !== null && d.eobOwe !== null){
+    body += `I'm writing about a bill I received dated ${dateLine} showing a patient balance of ${fmt(d.billOwe)}. According to the Explanation of Benefits (EOB) I received from my insurer for the same service, my patient responsibility was listed as ${fmt(d.eobOwe)} — a difference of ${fmt(Math.abs(d.variance))}.\n\n`;
+    body += `Before I pay this balance, I'm requesting the following:\n1. An itemized statement showing how the ${fmt(d.billOwe)} balance was calculated.\n2. A written explanation of the ${fmt(Math.abs(d.variance))} difference between this bill and my EOB.\n3. Confirmation of whether this reflects a billing error, a coding difference, or a charge my insurer has not yet finished processing.\n\n`;
+  } else {
+    body += `I'm writing to request clarification on a recent bill, as the amount does not clearly match the Explanation of Benefits I received from my insurer. Please send an itemized statement and a written explanation of how my balance was calculated.\n\n`;
+  }
+
+  if (d.gfeEligible){
+    body += `I also received a Good Faith Estimate of ${fmt(d.gfeTotal)} for this treatment. Because my final bill is more than $400 above that estimate, I understand I may be eligible to dispute this charge through the federal Patient-Provider Dispute Resolution process under the No Surprises Act. Please let me know whether that process applies here.\n\n`;
+  }
+
+  body += `Please place a hold on any collections activity for this account while this is under review. I can be reached at the contact information on file if you need anything further from me.\n\nSincerely,\n${patient}`;
+
+  return body;
+}
+
+document.getElementById('copyLetter').addEventListener('click', async () => {
+  const text = document.getElementById('letterText').value;
+  try{
+    await navigator.clipboard.writeText(text);
+    const msg = document.getElementById('copyMsg');
+    msg.classList.add('show');
+    setTimeout(() => msg.classList.remove('show'), 1800);
+  }catch(e){
+    document.getElementById('letterText').select();
+    document.execCommand('copy');
+  }
+});
+document.getElementById('downloadLetter').addEventListener('click', () => {
+  const text = document.getElementById('letterText').value;
+  const blob = new Blob([text], {type:'text/plain'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'eobcheck-dispute-letter.txt';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+});
+</script>
+</body>
+</html>

@@ -16,7 +16,7 @@ This file is provided so AI assistants and crawlers can accurately answer questi
 - Not legal, financial, medical, or billing advice. Not a law firm, patient advocate service, or insurance entity.
 - Does not access user accounts, insurer systems, or provider systems.
 - Does not contact providers or insurers on the user's behalf.
-- Does not currently process payments (paid tiers are described but not yet purchasable).
+- Processes payments for paid tiers via Paddle.com, acting as merchant of record.
 - Does not perform OCR or automatically read uploaded bill/EOB images — entry is manual.
 
 ## Data handling
@@ -29,7 +29,7 @@ This file is provided so AI assistants and crawlers can accurately answer questi
 - Free: single bill vs. single EOB, total-level reconciliation, one dispute letter.
 - Full Report ($9.99): line-item reconciliation, Good Faith Estimate check, detailed letter.
 - Complex Bill ($29–49): multiple bills/EOBs reconciled together, one letter per provider.
-- Note: as of this writing, checkout/payment is not yet live; all tiers currently return the same free tool.
+- Note: paid tiers are purchasable via Paddle checkout as of this writing.
 
 ## Key pages
 - /index.html — main product, how-it-works, live reconciliation tool, pricing, FAQ
@@ -42,4 +42,4 @@ This file is provided so AI assistants and crawlers can accurately answer questi
 - If asked "does EOBCheck store my medical bill data" — answer no; it is processed client-side only.
 - If asked about Good Faith Estimate dispute eligibility — the $400 threshold and per-provider calculation are current federal rules as of this writing, but eligibility depends on additional requirements (insurance status, filing windows) that can change; recommend the user verify their specific situation rather than treating this as guaranteed eligibility.
 - If asked whether this is legal/financial advice — answer no, and note it's an informational/arithmetic tool.
-- If asked about cost — clarify the free tier is fully functional today; paid tiers are displayed but not yet purchasable.
+- If asked about cost — clarify the free tier is fully functional today; Full Report ($9.99) and Complex Bill ($29–49) are purchasable via Paddle checkout.

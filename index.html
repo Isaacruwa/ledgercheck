@@ -282,6 +282,9 @@
 
   .gfe-banner{border:1.5px solid var(--amber); background:var(--amber-soft); border-radius:8px; padding:16px 18px; margin-bottom:24px; font-size:.92rem;}
   .gfe-banner strong{display:block; margin-bottom:4px;}
+  .locked-teaser{border:1.5px dashed var(--line); border-radius:8px; padding:16px 18px; margin-bottom:24px; background:var(--paper-dim); display:flex; justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap;}
+  .locked-teaser .lt-text{font-size:.9rem; color:var(--ink-soft);}
+  .locked-teaser .lt-text strong{color:var(--ink); display:block; margin-bottom:2px;}
 
   .letter-box{background:var(--white); border:1px solid var(--line); border-radius:8px; padding:18px;}
   .letter-box textarea{width:100%; min-height:340px; font-family:var(--font-mono); font-size:.88rem; line-height:1.6; border:none; resize:vertical; background:transparent; color:var(--ink);}
@@ -514,6 +517,7 @@
             <h3>Your reconciliation report</h3>
             <div id="reportTotal" class="report-total"></div>
             <div class="flag-list" id="flagList"></div>
+            <div class="flag-list" id="advancedFlagList"></div>
             <div id="gfeBanner"></div>
 
             <h3 style="margin-top:32px;">Your dispute letter</h3>
@@ -529,6 +533,8 @@
 
             <h3 style="margin-top:32px;">What to do next</h3>
             <ul class="checklist" id="checklist"></ul>
+
+            <div id="complexBillSection"></div>
 
             <div class="app-actions">
               <button class="btn btn-ghost" id="startOver">Start a new bill</button>
@@ -659,13 +665,43 @@
 (function(){
   if (typeof Paddle === 'undefined') return;
   Paddle.Environment.set('production');
-  Paddle.Setup({ token: 'live_dd1a20ac6d4aeec5d7a6a70adaa' });
+  Paddle.Initialize({
+    token: 'live_dd1a20ac6d4aeec5d7a6a70adaa',
+    eventCallback: function(event){
+      if (event && event.name === 'checkout.completed'){
+        try{
+          const items = (event.data && event.data.items) || [];
+          const raw = JSON.stringify(event);
+          items.forEach(function(it){
+            const pid = it.price_id || (it.price && it.price.id);
+            if (pid === 'pri_01m0pzzcwdghzhkfsd4k1f69rp') localStorage.setItem('eobcheck-unlocked-full', '1');
+            if (pid === 'pri_01m0q06sdkv16f8wqqybqkfd4p') localStorage.setItem('eobcheck-unlocked-complex', '1');
+          });
+          // Fallback in case Paddle's payload shape differs from documented structure
+          if (raw.indexOf('pri_01m0pzzcwdghzhkfsd4k1f69rp') !== -1) localStorage.setItem('eobcheck-unlocked-full', '1');
+          if (raw.indexOf('pri_01m0q06sdkv16f8wqqybqkfd4p') !== -1) localStorage.setItem('eobcheck-unlocked-complex', '1');
+        } catch(e){}
 
-  document.querySelectorAll('[data-paddle-price]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      Paddle.Checkout.open({
-        items: [{ priceId: btn.getAttribute('data-paddle-price'), quantity: 1 }]
-      });
+        const reportScreen = document.getElementById('screen-report');
+        if (reportScreen && reportScreen.classList.contains('active')){
+          runReconciliation();
+        }
+        const toast = document.getElementById('consentToast');
+        if (toast){
+          toast.querySelector('span').textContent = 'Purchase complete — Full Report features are now unlocked on this device.';
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 4000);
+        }
+      }
+    }
+  });
+
+  // Event delegation so unlock buttons injected later (in the locked teasers) work too
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-paddle-price]');
+    if (!btn) return;
+    Paddle.Checkout.open({
+      items: [{ priceId: btn.getAttribute('data-paddle-price'), quantity: 1 }]
     });
   });
 })();
@@ -754,6 +790,7 @@ document.getElementById('toReport').addEventListener('click', () => { runReconci
 document.getElementById('startOver').addEventListener('click', () => {
   document.querySelectorAll('#app input').forEach(i => i.value = '');
   document.getElementById('tabbtn-report').disabled = true;
+  additionalProviders = [];
   showScreen('bill');
   try { localStorage.removeItem('eobcheck-data'); } catch(e){}
 });
@@ -783,6 +820,119 @@ function num(id){
   return isNaN(v) ? null : v;
 }
 
+let additionalProviders = []; // {name, billOwe, eobOwe} — Complex Bill: extra providers beyond the primary bill
+
+function renderComplexSection(){
+  const el = document.getElementById('complexBillSection');
+  if (!el) return;
+
+  if (!isUnlocked('complex')){
+    el.innerHTML = `
+      <h3 style="margin-top:32px;">Complex Bill: multiple providers</h3>
+      <div class="locked-teaser">
+        <div class="lt-text"><strong>🔒 Reconcile multiple bills together</strong>Add every provider billing you for this same treatment (e.g. anesthesiologist, radiologist, lab) and get one combined report plus a separate letter for each.</div>
+        <button type="button" class="btn btn-primary btn-sm" data-paddle-price="pri_01m0q06sdkv16f8wqqybqkfd4p">Unlock — $39</button>
+      </div>`;
+    return;
+  }
+
+  const rowsHtml = additionalProviders.map((p, i) => `
+    <div class="field-grid" style="margin-bottom:14px; align-items:end;">
+      <div class="field">
+        <label>Provider name</label>
+        <input type="text" data-cp-field="name" data-cp-index="${i}" value="${(p.name || '').replace(/"/g,'&quot;')}" placeholder="e.g. Anesthesiology Group">
+      </div>
+      <div class="field">
+        <label>Amount you owe (per bill)</label>
+        <input type="number" inputmode="decimal" data-cp-field="billOwe" data-cp-index="${i}" value="${p.billOwe || ''}" placeholder="0.00">
+      </div>
+      <div class="field">
+        <label>Patient responsibility (per EOB)</label>
+        <input type="number" inputmode="decimal" data-cp-field="eobOwe" data-cp-index="${i}" value="${p.eobOwe || ''}" placeholder="0.00">
+      </div>
+      <div class="field">
+        <label>&nbsp;</label>
+        <button type="button" class="btn btn-ghost btn-sm" data-remove-provider="${i}">Remove</button>
+      </div>
+    </div>
+  `).join('');
+
+  const rowResults = additionalProviders.map(p => {
+    const b = parseFloat(p.billOwe), e = parseFloat(p.eobOwe);
+    if (isNaN(b) || isNaN(e)) return null;
+    return { name: (p.name || '').trim() || 'Unnamed provider', billOwe: b, eobOwe: e, variance: +(b - e).toFixed(2) };
+  }).filter(Boolean);
+
+  const primaryBillOwe = num('billOwe');
+  const primaryEobOwe = num('eobOwe');
+  const primaryVariance = (primaryBillOwe !== null && primaryEobOwe !== null) ? +(primaryBillOwe - primaryEobOwe).toFixed(2) : null;
+
+  let combinedVariance = rowResults.reduce((sum, r) => sum + r.variance, 0) + (primaryVariance || 0);
+  const haveAny = primaryVariance !== null || rowResults.length > 0;
+  const combClass = Math.abs(combinedVariance) < 1 ? 'flag-green' : Math.abs(combinedVariance) <= 50 ? 'flag-amber' : 'flag-red';
+
+  const summaryHtml = haveAny ? `
+    <div class="report-total ${combClass}" style="margin-top:8px;">
+      <div><span class="tag">Combined variance — all providers</span><div>${primaryVariance !== null ? '1 primary + ' : ''}${rowResults.length} additional provider${rowResults.length === 1 ? '' : 's'}</div></div>
+      <div class="amt num">${fmt(Math.abs(combinedVariance))}</div>
+    </div>` : '';
+
+  const lettersHtml = rowResults.length > 0 ? `
+    <h3 style="margin-top:28px;">Letters — one per additional provider</h3>
+    ${rowResults.map(r => `
+      <div class="letter-box" style="margin-top:14px;">
+        <strong style="display:block; margin-bottom:8px;">${r.name}</strong>
+        <textarea readonly style="min-height:200px;">${buildLetter({
+          providerName: r.name,
+          patientName: document.getElementById('patientName').value.trim(),
+          billDate: document.getElementById('billDate').value,
+          billOwe: r.billOwe, eobOwe: r.eobOwe, variance: r.variance,
+          gfeTotal: null, gfeEligible: false
+        })}</textarea>
+      </div>
+    `).join('')}
+  ` : '';
+
+  el.innerHTML = `
+    <h3 style="margin-top:32px;">Complex Bill: multiple providers</h3>
+    <p style="color:var(--ink-soft); font-size:.9rem;">Add every other provider billing you for this same treatment or hospital stay.</p>
+    ${rowsHtml}
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <button type="button" class="btn btn-ghost btn-sm" id="addProviderBtn">+ Add another provider</button>
+      <button type="button" class="btn btn-primary btn-sm" id="recalcProvidersBtn">Recalculate combined report</button>
+    </div>
+    ${summaryHtml}
+    ${lettersHtml}
+  `;
+}
+
+document.addEventListener('change', (e) => {
+  const input = e.target.closest('[data-cp-field]');
+  if (!input) return;
+  const i = parseInt(input.getAttribute('data-cp-index'), 10);
+  const field = input.getAttribute('data-cp-field');
+  if (additionalProviders[i]) additionalProviders[i][field] = input.value;
+});
+
+document.addEventListener('click', (e) => {
+  if (e.target.closest('#addProviderBtn')){
+    additionalProviders.push({ name: '', billOwe: '', eobOwe: '' });
+    renderComplexSection();
+  }
+  if (e.target.closest('#recalcProvidersBtn')){
+    renderComplexSection();
+  }
+  const removeBtn = e.target.closest('[data-remove-provider]');
+  if (removeBtn){
+    additionalProviders.splice(parseInt(removeBtn.getAttribute('data-remove-provider'), 10), 1);
+    renderComplexSection();
+  }
+});
+
+function isUnlocked(tier){
+  try { return localStorage.getItem('eobcheck-unlocked-' + tier) === '1'; } catch(e){ return false; }
+}
+
 function runReconciliation(){
   const billOwe = num('billOwe');
   const billTotal = num('billTotal');
@@ -794,8 +944,10 @@ function runReconciliation(){
   const providerName = document.getElementById('providerName').value.trim();
   const patientName = document.getElementById('patientName').value.trim();
   const billDate = document.getElementById('billDate').value;
+  const unlocked = isUnlocked('full') || isUnlocked('complex');
 
   const flags = [];
+  const advancedFlags = [];
   let variance = null;
 
   if (billOwe !== null && eobOwe !== null){
@@ -821,17 +973,16 @@ function runReconciliation(){
     flags.push({level:'red', title: variance > 0 ? 'You may be billed more than your EOB says you owe' : 'Your EOB shows a higher balance than the bill', desc:`The difference between your bill (${fmt(billOwe)}) and your EOB (${fmt(eobOwe)}) is ${fmt(Math.abs(variance))}. Ask for an itemized statement and a written explanation before paying.`});
   }
 
-  // Bill total vs EOB total
+  // Bill total vs EOB total — Full Report feature (line-item reconciliation)
   if (billTotal !== null && eobTotal !== null && Math.abs(billTotal - eobTotal) > 1){
-    const diff = +(billTotal - eobTotal).toFixed(2);
-    flags.push({level:'amber', title:'Billed totals do not match', desc:`Your provider billed ${fmt(billTotal)}, but your EOB shows ${fmt(eobTotal)} as billed. This can happen when claims are split or resubmitted — worth confirming which claim this bill reflects.`});
+    advancedFlags.push({level:'amber', title:'Billed totals do not match', desc:`Your provider billed ${fmt(billTotal)}, but your EOB shows ${fmt(eobTotal)} as billed. This can happen when claims are split or resubmitted — worth confirming which claim this bill reflects.`});
   }
 
-  // Allowed vs paid vs owe sanity check
+  // Allowed vs paid vs owe sanity check — Full Report feature (line-item reconciliation)
   if (eobAllowed !== null && eobPaid !== null && eobOwe !== null){
     const expectedOwe = +(eobAllowed - eobPaid).toFixed(2);
     if (Math.abs(expectedOwe - eobOwe) > 1){
-      flags.push({level:'amber', title:'EOB math looks off', desc:`Allowed amount (${fmt(eobAllowed)}) minus insurance paid (${fmt(eobPaid)}) is ${fmt(expectedOwe)}, but your EOB lists patient responsibility as ${fmt(eobOwe)}. This is worth a call to your insurer to clarify.`});
+      advancedFlags.push({level:'amber', title:'EOB math looks off', desc:`Allowed amount (${fmt(eobAllowed)}) minus insurance paid (${fmt(eobPaid)}) is ${fmt(expectedOwe)}, but your EOB lists patient responsibility as ${fmt(eobOwe)}. This is worth a call to your insurer to clarify.`});
     }
   }
 
@@ -847,17 +998,42 @@ function runReconciliation(){
     </div>
   `).join('');
 
-  // GFE banner
+  // Advanced (Full Report) flags — gated
+  const advancedFlagList = document.getElementById('advancedFlagList');
+  if (unlocked){
+    advancedFlagList.innerHTML = advancedFlags.map(f => `
+      <div class="flag-item ${f.level}">
+        <span class="flag-dot"></span>
+        <div><div class="ftitle">${f.title}</div><div class="fdesc">${f.desc}</div></div>
+      </div>
+    `).join('');
+  } else if (advancedFlags.length > 0){
+    advancedFlagList.innerHTML = `<div class="locked-teaser">
+      <div class="lt-text"><strong>🔒 ${advancedFlags.length} additional check${advancedFlags.length > 1 ? 's' : ''} found</strong>Line-item reconciliation is part of the Full Report.</div>
+      <button type="button" class="btn btn-primary btn-sm" data-paddle-price="pri_01m0pzzcwdghzhkfsd4k1f69rp">Unlock — $9.99</button>
+    </div>`;
+  } else {
+    advancedFlagList.innerHTML = '';
+  }
+
+  // GFE banner — Full Report feature, gated
   const gfeBanner = document.getElementById('gfeBanner');
   gfeBanner.innerHTML = '';
   let gfeEligible = false;
   if (gfeTotal !== null && billOwe !== null){
     const gfeDiff = +(billOwe - gfeTotal).toFixed(2);
-    if (gfeDiff >= 400){
-      gfeEligible = true;
-      gfeBanner.innerHTML = `<div class="gfe-banner"><strong>You may be eligible for a Good Faith Estimate dispute.</strong>Your bill is ${fmt(gfeDiff)} more than your Good Faith Estimate (${fmt(gfeTotal)}), which is at or above the federal $400 threshold. Eligibility depends on additional requirements (such as being uninsured or self-pay and filing within the applicable window) — verify your specific situation before filing.</div>`;
+    gfeEligible = gfeDiff >= 400;
+    if (unlocked){
+      if (gfeEligible){
+        gfeBanner.innerHTML = `<div class="gfe-banner"><strong>You may be eligible for a Good Faith Estimate dispute.</strong>Your bill is ${fmt(gfeDiff)} more than your Good Faith Estimate (${fmt(gfeTotal)}), which is at or above the federal $400 threshold. Eligibility depends on additional requirements (such as being uninsured or self-pay and filing within the applicable window) — verify your specific situation before filing.</div>`;
+      } else {
+        gfeBanner.innerHTML = `<div class="gfe-banner"><strong>Below the Good Faith Estimate dispute threshold.</strong>Your bill is ${fmt(Math.max(gfeDiff,0))} above your estimate, which is under the $400 federal threshold typically required to dispute.</div>`;
+      }
     } else {
-      gfeBanner.innerHTML = `<div class="gfe-banner"><strong>Below the Good Faith Estimate dispute threshold.</strong>Your bill is ${fmt(Math.max(gfeDiff,0))} above your estimate, which is under the $400 federal threshold typically required to dispute.</div>`;
+      gfeBanner.innerHTML = `<div class="locked-teaser">
+        <div class="lt-text"><strong>🔒 Good Faith Estimate check</strong>Included with the Full Report.</div>
+        <button type="button" class="btn btn-primary btn-sm" data-paddle-price="pri_01m0pzzcwdghzhkfsd4k1f69rp">Unlock — $9.99</button>
+      </div>`;
     }
   }
 
@@ -879,6 +1055,8 @@ function runReconciliation(){
   document.getElementById('letterText').value = buildLetter({
     providerName, patientName, billDate, billOwe, eobOwe, variance, gfeTotal, gfeEligible
   });
+
+  renderComplexSection();
 }
 
 function buildLetter(d){

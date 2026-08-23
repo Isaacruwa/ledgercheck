@@ -102,6 +102,7 @@
 </script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
@@ -160,6 +161,7 @@
     border-radius:999px; padding:.85em 1.6em; border:1.5px solid transparent;
     cursor:pointer; display:inline-flex; align-items:center; gap:.5em; text-decoration:none;
     transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+    appearance:none; -webkit-appearance:none; font-family:inherit;
   }
   .btn:focus-visible{outline:3px solid var(--amber); outline-offset:2px;}
   .btn-primary{background:var(--teal); color:var(--white);}
@@ -568,7 +570,7 @@
             <li>Good Faith Estimate dispute check</li>
             <li>Detailed, editable dispute letter</li>
           </ul>
-          <a href="#app" class="btn btn-primary">Get the full report</a>
+          <button type="button" class="btn btn-primary" data-paddle-price="pri_01m0pzzcwdghzhkfsd4k1f69rp">Get the full report</button>
         </div>
         <div class="price-card">
           <span class="ptag">Complex bill</span>
@@ -580,7 +582,7 @@
             <li>Combined variance summary</li>
             <li>One letter per provider</li>
           </ul>
-          <a href="#app" class="btn btn-ghost">Get started</a>
+          <button type="button" class="btn btn-ghost" data-paddle-price="pri_01m0q06sdkv16f8wqqybqkfd4p">Get started — $39</button>
         </div>
       </div>
     </div>
@@ -615,7 +617,7 @@
         </div>
         <div class="faq-item">
           <button class="faq-q">What's your refund policy? <span class="plus">+</span></button>
-          <div class="faq-a">Paid tiers aren't available for purchase yet. Once checkout is live, refund requests within 14 days of purchase for an unused report are eligible for a full refund. See the full <a href="/refund-policy">Refund Policy</a> for details.</div>
+          <div class="faq-a">Refund requests within 14 days of purchase, for an unused report, are eligible for a full refund. Purchases are processed by Paddle.com, our merchant of record. See the full <a href="/refund-policy">Refund Policy</a> for details.</div>
         </div>
       </div>
     </div>
@@ -653,6 +655,21 @@
 </div>
 
 <script>
+// ---------- Paddle checkout ----------
+(function(){
+  if (typeof Paddle === 'undefined') return;
+  Paddle.Environment.set('production');
+  Paddle.Setup({ token: 'live_dd1a20ac6d4aeec5d7a6a70adaa' });
+
+  document.querySelectorAll('[data-paddle-price]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      Paddle.Checkout.open({
+        items: [{ priceId: btn.getAttribute('data-paddle-price'), quantity: 1 }]
+      });
+    });
+  });
+})();
+
 // ---------- Service worker ----------
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {

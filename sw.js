@@ -1,4 +1,4 @@
-const CACHE = 'eobcheck-v5';
+const CACHE = 'eobcheck-v6';
 const ASSETS = ['/', '/privacy', '/terms', '/refund-policy', '/sitemap', '/manifest.json', '/icon.svg'];
 
 self.addEventListener('install', (e) => {
@@ -15,18 +15,17 @@ self.addEventListener('activate', (e) => {
 
 self.addEventListener('fetch', (e) => {
   if (e.request.method !== 'GET') return;
+  // Network-first: always try to get the latest version while online.
+  // Only fall back to the cached copy if the network request fails (e.g. offline).
   e.respondWith(
-    caches.match(e.request).then((cached) => {
-      const network = fetch(e.request)
-        .then((res) => {
-          if (res && res.status === 200) {
-            const copy = res.clone();
-            caches.open(CACHE).then((c) => c.put(e.request, copy));
-          }
-          return res;
-        })
-        .catch(() => cached);
-      return cached || network;
-    })
+    fetch(e.request)
+      .then((res) => {
+        if (res && res.status === 200) {
+          const copy = res.clone();
+          caches.open(CACHE).then((c) => c.put(e.request, copy));
+        }
+        return res;
+      })
+      .catch(() => caches.match(e.request))
   );
 });

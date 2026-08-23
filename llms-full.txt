@@ -32,7 +32,7 @@ Q: Is this legal or financial advice?
 A: No. EOBCheck is an informational tool that checks arithmetic and flags common patterns — it does not replace a licensed patient advocate, attorney, or accountant. For anything time-sensitive or high-stakes, confirm with a professional.
 
 Q: What's the refund policy?
-A: Paid tiers are not yet available for purchase. Once enabled, refund requests within 14 days of purchase for an unused report are eligible for a full refund. Full policy: /refund-policy.html.
+A: Refund requests within 14 days of purchase, for an unused report, are eligible for a full refund. Purchases are processed by Paddle.com, our merchant of record. Full policy: /refund-policy.
 
 ## Legal pages summary
 - Privacy Policy (/privacy.html): no server-side storage of bill/EOB data; local-storage-only for in-progress form entries; no tracking cookies; children's privacy statement; contact for privacy questions.

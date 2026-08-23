@@ -6,6 +6,10 @@
 <title>EOBCheck — Does Your Medical Bill Match Your EOB?</title>
 <meta name="description" content="Enter what your medical bill says and what your EOB says. EOBCheck shows exactly where they disagree, checks Good Faith Estimate rules, and drafts your dispute letter — free, in your browser.">
 <meta name="theme-color" content="#1F4B44">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="EOBCheck">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/svg+xml" href="icon.svg">
 <link rel="apple-touch-icon" href="icon.svg">
@@ -130,7 +134,8 @@
     --maxw:1120px;
   }
   *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth; overflow-x:hidden; max-width:100%;}
+  body{overflow-x:hidden; max-width:100%;}
   @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;} }
 
   body{
@@ -216,8 +221,13 @@
 
   /* sections */
   section{padding:76px 0;}
+  @media(max-width:600px){
+    section{padding:44px 0;}
+    .hero{padding:36px 0 24px;}
+  }
   section.alt{background:var(--paper-dim); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
   .section-head{max-width:640px; margin-bottom:44px;}
+  @media(max-width:600px){ .section-head{margin-bottom:28px;} }
 
   /* steps (legit sequence) */
   .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:30px;}
@@ -238,6 +248,10 @@
   .app-shell{background:var(--card); border:1px solid var(--line); border-radius:14px; overflow:hidden; box-shadow:0 20px 50px -30px rgba(18,51,46,.35);}
   .app-tabs{display:flex; border-bottom:1px solid var(--line); background:var(--paper-dim);}
   .app-tab{flex:1; text-align:center; padding:14px 8px; font-family:var(--font-mono); font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); background:none; border:none; cursor:pointer; border-bottom:2.5px solid transparent;}
+  @media(max-width:480px){
+    .app-tab{padding:12px 4px; font-size:.68rem; letter-spacing:.02em;}
+    .app-tab .optional-tag{display:none;}
+  }
   .app-tab.active{color:var(--teal-deep); border-bottom-color:var(--teal); background:var(--card);}
   .app-tab[disabled]{opacity:.4; cursor:not-allowed;}
   .app-body{padding:32px;}
@@ -260,6 +274,10 @@
   .optional-tag{font-family:var(--font-body); font-weight:500; font-size:.72rem; color:var(--ink-soft); background:var(--paper-dim); padding:.15em .6em; border-radius:999px; margin-left:.4em;}
 
   .app-actions{display:flex; justify-content:space-between; align-items:center; margin-top:28px; gap:12px; flex-wrap:wrap;}
+  @media(max-width:480px){
+    .app-actions{flex-direction:column-reverse; align-items:stretch; gap:10px; margin-top:24px; padding-top:18px; border-top:1px solid var(--line);}
+    .app-actions .btn{width:100%; justify-content:center;}
+  }
 
   /* report */
   .report-total{
@@ -701,7 +719,13 @@
     const btn = e.target.closest('[data-paddle-price]');
     if (!btn) return;
     Paddle.Checkout.open({
-      items: [{ priceId: btn.getAttribute('data-paddle-price'), quantity: 1 }]
+      items: [{ priceId: btn.getAttribute('data-paddle-price'), quantity: 1 }],
+      settings: {
+        displayMode: 'overlay',
+        theme: 'light',
+        frameInitialHeight: 450,
+        successUrl: window.location.href
+      }
     });
   });
 })();

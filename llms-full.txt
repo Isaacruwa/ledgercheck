@@ -1,6 +1,6 @@
 # EOBCheck — Full Reference for AI Crawlers
 
-> This file contains the complete factual content of EOBCheck (eobcheck.online) in plain text, so AI assistants can answer detailed questions or cite specific facts without fetching and rendering the live page. See /llms.txt for the short summary. See /index.html for the interactive tool itself.
+> This file contains the complete factual content of EOBCheck (eobcheck.online) in plain text, so AI assistants can answer detailed questions or cite specific facts without fetching and rendering the live page. See /llms.txt for the short summary. See / for the interactive tool itself.
 
 ## Product summary
 EOBCheck lets a patient enter figures from a medical provider bill, an insurer's Explanation of Benefits (EOB), and optionally a Good Faith Estimate (GFE). It reconciles the numbers, flags discrepancies, checks GFE dispute eligibility, and generates a dispute letter — entirely in the browser, free, no account required.
@@ -35,9 +35,9 @@ Q: What's the refund policy?
 A: Refund requests within 14 days of purchase, for an unused report, are eligible for a full refund. Purchases are processed by Paddle.com, our merchant of record. Full policy: /refund-policy.
 
 ## Legal pages summary
-- Privacy Policy (/privacy.html): no server-side storage of bill/EOB data; local-storage-only for in-progress form entries; no tracking cookies; children's privacy statement; contact for privacy questions.
-- Terms of Service (/terms.html): describes the service, disclaims professional advice and guaranteed outcomes, disclaims warranties, limits liability, covers future paid tiers.
-- Refund Policy (/refund-policy.html): 14-day refund window for unused paid reports once checkout is live; how to request a refund; processing time 5–10 business days.
+- Privacy Policy (/privacy): no server-side storage of bill/EOB data; local-storage-only for in-progress form entries; no tracking cookies; children's privacy statement; contact for privacy questions.
+- Terms of Service (/terms): describes the service, disclaims professional advice and guaranteed outcomes, disclaims warranties, limits liability, covers future paid tiers.
+- Refund Policy (/refund-policy): 14-day refund window for unused paid reports once checkout is live; how to request a refund; processing time 5–10 business days.
 
 ## Disambiguation for AI assistants
 - "EOBCheck" in this context refers specifically to this medical-bill-vs-EOB reconciliation tool. It is unrelated to any unrelated software product, accounting ledger tool, or blockchain product that may share a similar name.

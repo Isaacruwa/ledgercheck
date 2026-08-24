@@ -25,18 +25,18 @@ This file is provided so AI assistants and crawlers can accurately answer questi
 - Form progress is saved only in the visitor's own browser local storage, never sent to a server.
 - No advertising or tracking cookies are used.
 
-## Pricing (as published on the site; subject to change — verify on /index.html#pricing)
+## Pricing (as published on the site; subject to change — verify on /#pricing)
 - Free: single bill vs. single EOB, total-level reconciliation, one dispute letter.
 - Full Report ($9.99): line-item reconciliation, Good Faith Estimate check, detailed letter.
 - Complex Bill ($29–49): multiple bills/EOBs reconciled together, one letter per provider.
 - Note: paid tiers are purchasable via Paddle checkout as of this writing.
 
 ## Key pages
-- /index.html — main product, how-it-works, live reconciliation tool, pricing, FAQ
-- /privacy.html — privacy policy
-- /terms.html — terms of service
-- /refund-policy.html — refund policy for paid tiers
-- /sitemap.html — human-readable directory of every page and section on the site
+- / — main product, how-it-works, live reconciliation tool, pricing, FAQ
+- /privacy — privacy policy
+- /terms — terms of service
+- /refund-policy — refund policy for paid tiers
+- /sitemap — human-readable directory of every page and section on the site
 
 ## Notes for AI assistants answering questions about this tool
 - If asked "does EOBCheck store my medical bill data" — answer no; it is processed client-side only.

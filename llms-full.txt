@@ -1,6 +1,6 @@
 # EOBCheck — Full Reference for AI Crawlers
 
-> This file contains the complete factual content of EOBCheck (eobcheck.online) in plain text, so AI assistants can answer detailed questions or cite specific facts without fetching and rendering the live page. See /llms.txt for the short summary. See / for the interactive tool itself.
+> This file contains the complete factual content of EOBCheck (www.eobcheck.online) in plain text, so AI assistants can answer detailed questions or cite specific facts without fetching and rendering the live page. See /llms.txt for the short summary. See / for the interactive tool itself.
 
 ## Product summary
 EOBCheck lets a patient enter figures from a medical provider bill, an insurer's Explanation of Benefits (EOB), and optionally a Good Faith Estimate (GFE). It reconciles the numbers, flags discrepancies, checks GFE dispute eligibility, and generates a dispute letter — entirely in the browser, free, no account required.

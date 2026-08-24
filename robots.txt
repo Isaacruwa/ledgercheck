@@ -68,4 +68,4 @@ Allow: /
 User-agent: Diffbot
 Allow: /
 
-Sitemap: https://eobcheck.online/sitemap.xml
+Sitemap: https://www.eobcheck.online/sitemap.xml

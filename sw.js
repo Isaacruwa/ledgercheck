@@ -1,5 +1,5 @@
-const CACHE = 'eobcheck-v6';
-const ASSETS = ['/', '/privacy', '/terms', '/refund-policy', '/sitemap', '/manifest.json', '/icon.svg'];
+const CACHE = 'eobcheck-v7';
+const ASSETS = ['/', '/privacy', '/terms', '/refund-policy', '/sitemap', '/manifest.json', '/icon.svg', '/favicon.ico', '/favicon-48.png', '/favicon-192.png', '/favicon-512.png', '/apple-touch-icon.png'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)));

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Read an Explanation of Benefits (EOB): A Line-by-Line Guide | EOBCheck</title>
+<meta name="description" content="A plain-English, line-by-line walkthrough of every field on a health insurance EOB — billed amount, allowed amount, paid amount, patient responsibility, and more.">
+<link rel="canonical" href="https://www.eobcheck.online/blog/how-to-read-an-eob">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/icon.svg">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to Read an Explanation of Benefits (EOB): A Line-by-Line Guide">
+<meta property="og:description" content="A plain-English, line-by-line walkthrough of every field on a health insurance EOB.">
+<meta property="og:url" content="https://www.eobcheck.online/blog/how-to-read-an-eob">
+<meta property="og:image" content="https://www.eobcheck.online/og-image.png">
+<meta property="og:site_name" content="EOBCheck">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How to Read an Explanation of Benefits (EOB): A Line-by-Line Guide">
+<meta name="twitter:image" content="https://www.eobcheck.online/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "EOBCheck", "item": "https://www.eobcheck.online/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.eobcheck.online/blog" },
+        { "@type": "ListItem", "position": 3, "name": "How to Read an EOB", "item": "https://www.eobcheck.online/blog/how-to-read-an-eob" }
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "How to Read an Explanation of Benefits (EOB): A Line-by-Line Guide",
+      "description": "A plain-English, line-by-line walkthrough of every field on a health insurance EOB.",
+      "datePublished": "2026-08-25",
+      "dateModified": "2026-08-25",
+      "author": { "@type": "Organization", "name": "EOBCheck" },
+      "publisher": { "@type": "Organization", "name": "EOBCheck", "logo": { "@type": "ImageObject", "url": "https://www.eobcheck.online/favicon-192.png" } },
+      "mainEntityOfPage": "https://www.eobcheck.online/blog/how-to-read-an-eob",
+      "image": "https://www.eobcheck.online/og-image.png"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is an EOB the same as a bill?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. An EOB comes from your insurance company and explains how they processed a claim. A bill comes from your provider and asks you to pay. They should agree on what you owe, but they are two different documents from two different senders." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between billed amount and allowed amount on an EOB?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The billed amount is what the provider originally charged. The allowed amount is the lower, negotiated rate your insurance plan actually recognizes for that service. You are generally not responsible for the difference between the two if the provider is in-network." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#EFF2F0;--ink:#182420;--ink-soft:#515D57;--teal:#1F4B44;--teal-deep:#12332E;--red:#B8412B;--amber:#A5722B;--line:#CBD4CE;--card:#FBFCFB;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',system-ui,sans-serif;line-height:1.7;}
+  .wrap{max-width:720px;margin:0 auto;padding:0 24px;}
+  header{border-bottom:1px solid var(--line);padding:18px 0;}
+  .logo{font-family:'Fraunces',serif;font-weight:600;font-size:1.2rem;color:var(--teal-deep);text-decoration:none;display:flex;align-items:center;gap:.5em;}
+  .logo .mark{width:22px;height:22px;border-radius:6px;background:var(--teal);position:relative;flex:none;}
+  .logo .mark::before,.logo .mark::after{content:"";position:absolute;left:4px;right:4px;height:2px;background:var(--paper);border-radius:2px;}
+  .logo .mark::before{top:7px;} .logo .mark::after{top:12px;right:8px;}
+  .breadcrumb{font-size:.82rem;color:var(--ink-soft);margin:18px 0 4px;}
+  .breadcrumb a{color:var(--ink-soft);}
+  main{padding:28px 0 70px;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);display:block;margin-bottom:.6em;}
+  h1{font-family:'Fraunces',serif;font-size:2.2rem;line-height:1.15;color:var(--teal-deep);margin:0 0 .3em;}
+  .byline{font-family:'IBM Plex Mono',monospace;font-size:.8rem;color:var(--ink-soft);margin-bottom:2em;}
+  h2{font-family:'Fraunces',serif;font-size:1.5rem;color:var(--teal-deep);margin:1.8em 0 .5em;}
+  h3{font-size:1.15rem;color:var(--teal-deep);margin:1.4em 0 .4em;}
+  p,li{color:var(--ink);font-size:1.02rem;}
+  p{margin:0 0 1.1em;}
+  ol,ul{padding-left:1.3em;}
+  li{margin-bottom:.5em;}
+  a{color:var(--teal);}
+  .lede{font-size:1.1rem;color:var(--ink-soft);}
+  .tip{background:var(--card);border-left:4px solid var(--teal);border-radius:6px;padding:16px 20px;margin:1.6em 0;font-size:.96rem;}
+  .tip strong{color:var(--teal-deep);}
+  .field-row{display:flex;justify-content:space-between;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 18px;margin:.7em 0;}
+  .field-row .fname{font-weight:600;}
+  .field-row .fdesc{color:var(--ink-soft);font-size:.92rem;text-align:right;max-width:60%;}
+  .cta-box{background:var(--teal);color:#fff;border-radius:12px;padding:28px 26px;margin:2.4em 0;}
+  .cta-box h3{color:#fff;margin-top:0;}
+  .cta-box p{color:rgba(255,255,255,.85);}
+  .cta-box a.btn{display:inline-block;background:#fff;color:var(--teal-deep);font-weight:600;padding:.7em 1.4em;border-radius:999px;text-decoration:none;margin-top:.4em;}
+  .related{border-top:1px solid var(--line);margin-top:2.5em;padding-top:1.8em;}
+  .related h3{margin-top:0;}
+  .related ul{list-style:none;padding:0;}
+  .related li{margin-bottom:.7em;}
+  footer{border-top:1px solid var(--line);padding:24px 0;font-size:.85rem;color:var(--ink-soft);}
+  footer a{color:var(--ink-soft);margin-right:16px;}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a href="/" class="logo"><span class="mark" aria-hidden="true"></span>EOBCheck</a></div></header>
+<main>
+  <div class="wrap">
+    <p class="breadcrumb"><a href="/">Home</a> / <a href="/blog">Blog</a> / How to Read an EOB</p>
+    <span class="eyebrow">Medical Billing Basics</span>
+    <h1>How to Read an Explanation of Benefits (EOB): A Line-by-Line Guide</h1>
+    <p class="byline">EOBCheck · Updated August 25, 2026 · 8 min read</p>
+
+    <p class="lede">An EOB is not a bill. It's your insurance company's explanation of how it processed a claim — and it's usually the single most useful document for figuring out what you actually owe. Here's what every field on it actually means.</p>
+
+    <h2>The header: who, what, when</h2>
+    <p>At the top, you'll typically find the patient name, the provider or facility name, the date of service, and a claim number. Keep the claim number — you'll need it if you ever call your insurer about this specific visit.</p>
+
+    <h2>The core numbers, field by field</h2>
+
+    <div class="field-row"><span class="fname">Amount billed</span><span class="fdesc">What the provider originally charged for the service.</span></div>
+    <div class="field-row"><span class="fname">Allowed amount</span><span class="fdesc">The negotiated rate your insurance plan actually recognizes — usually lower than the billed amount.</span></div>
+    <div class="field-row"><span class="fname">Amount paid by insurance</span><span class="fdesc">What your insurer actually paid the provider.</span></div>
+    <div class="field-row"><span class="fname">Patient responsibility</span><span class="fdesc">What your insurer calculates that you owe — this is the figure to compare against your bill.</span></div>
+    <div class="field-row"><span class="fname">Deductible / copay / coinsurance</span><span class="fdesc">The breakdown of why you owe what you owe, based on your specific plan's rules.</span></div>
+
+    <h2>"Not a bill" — and why that matters</h2>
+    <p>Almost every EOB says "this is not a bill" somewhere on it, in bold. That's because the EOB's job is only to tell you how the claim was processed — the actual request for payment comes separately from your provider. The two documents should agree on the patient responsibility figure. When they don't, that's the exact gap worth investigating (see our <a href="/blog/why-medical-bill-doesnt-match-eob">guide to why bills and EOBs don't match</a>).</p>
+
+    <h2>Allowed amount vs. billed amount: the part people misunderstand</h2>
+    <p>If your provider is in-network, you're generally not responsible for the difference between the billed amount and the allowed amount — that gap gets written off under your insurer's contract with the provider. If a bill asks you to pay based on the full billed amount instead of the allowed amount, that's a specific, checkable red flag.</p>
+
+    <div class="tip"><strong>Quick math check:</strong> Allowed amount − insurance paid should equal patient responsibility. If those three numbers on your own EOB don't add up, call your insurer and ask them to explain the discrepancy before you assume the bill is correct.</div>
+
+    <h2>Remark codes and denial codes</h2>
+    <p>Many EOBs include a short code next to a line item (sometimes just 2–3 letters or numbers) with a matching explanation elsewhere on the page or a linked glossary. These explain <em>why</em> something was denied, reduced, or adjusted — for example, "not a covered service" versus "missing prior authorization" are very different problems with very different next steps.</p>
+
+    <h2>What to do once you've read it</h2>
+    <ol>
+      <li>Find the patient responsibility figure.</li>
+      <li>Compare it directly to what your provider's bill says you owe.</li>
+      <li>If they match (within a few dollars), you're likely fine to pay.</li>
+      <li>If they don't, note the exact dollar difference before calling anyone — it makes the conversation much faster.</li>
+    </ol>
+
+    <div class="cta-box">
+      <h3>Skip the manual math</h3>
+      <p>EOBCheck takes your EOB's numbers and your bill's numbers and does this comparison for you automatically — flagging exactly where they disagree and drafting a letter to ask why.</p>
+      <a href="/#app" class="btn">Compare my bill and EOB — free</a>
+    </div>
+
+    <h3>Related reading</h3>
+    <div class="related">
+      <ul>
+        <li>→ <a href="/blog/why-medical-bill-doesnt-match-eob">Why Doesn't My Medical Bill Match My EOB? 7 Real Reasons</a></li>
+        <li>→ <a href="/blog/good-faith-estimate-dispute-guide">The Good Faith Estimate Dispute Process, Explained</a></li>
+        <li>→ <a href="/blog/bill-higher-than-eob">Medical Bill Higher Than Your EOB Says You Owe? Here's Exactly What to Do</a></li>
+      </ul>
+    </div>
+  </div>
+</main>
+<footer><div class="wrap"><a href="/">Home</a><a href="/blog">Blog</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/refund-policy">Refunds</a></div></footer>
+</body>
+</html>

@@ -34,7 +34,24 @@ A: No. EOBCheck is an informational tool that checks arithmetic and flags common
 Q: What's the refund policy?
 A: Refund requests within 14 days of purchase, for an unused report, are eligible for a full refund. Purchases are processed by Paddle.com, our merchant of record. Full policy: /refund-policy.
 
-## Legal pages summary
+## Blog articles (full summaries)
+
+### Why Doesn't My Medical Bill Match My EOB? 7 Real Reasons (/blog/why-medical-bill-doesnt-match-eob)
+Explains 7 common causes of a bill-vs-EOB mismatch: the bill was sent before the EOB finished processing; balance billing (often from an out-of-network provider involved in an in-network visit); duplicate charges on the itemized statement; coding differences between what was billed and what was allowed; a claim that was split or resubmitted as multiple claims; a payment or adjustment that hasn't posted yet; or a straightforward billing error. Recommends comparing the bill's "amount owed" against the EOB's "patient responsibility" directly, and links to EOBCheck's free tool to automate that comparison.
+
+### How to Read an Explanation of Benefits (EOB): A Line-by-Line Guide (/blog/how-to-read-an-eob)
+A field-by-field walkthrough of an EOB: amount billed, allowed amount (the negotiated rate, usually lower than billed), amount paid by insurance, patient responsibility, and the deductible/copay/coinsurance breakdown. Explains that an EOB is not a bill, that allowed-amount minus insurance-paid should equal patient responsibility (a math check readers can do themselves), and that remark/denial codes explain why a line item was adjusted or denied.
+
+### The Good Faith Estimate Dispute Process: How the $400 Rule Actually Works (/blog/good-faith-estimate-dispute-guide)
+Explains the federal Good Faith Estimate (GFE) dispute process: uninsured/self-pay patients who receive a written GFE before a scheduled service and are later billed $400 or more above that estimate, from the same provider or facility, may be eligible to dispute the charge through a federal Patient-Provider Dispute Resolution process. Emphasizes the threshold is calculated per provider/facility, not combined across a patient's whole treatment. Outlines the filing steps and notes eligibility rules and filing windows can change.
+
+### Medical Bill Higher Than Your EOB Says You Owe? Here's Exactly What to Do (/blog/bill-higher-than-eob)
+A 7-step action plan: (1) find the exact bill and EOB figures, (2) confirm both documents are for the same claim/date of service, (3) request an itemized statement, (4) request a written explanation of the specific dollar difference, (5) ask for a written hold on collections while under review, (6) call the insurer to confirm their calculated patient responsibility, (7) check Good Faith Estimate eligibility if applicable. Stresses getting requests and holds in writing, not just verbal.
+
+### How to Write a Medical Bill Dispute Letter (Template + What to Include) (/blog/medical-bill-dispute-letter-template)
+Explains why a written dispute letter is more effective than a phone call (creates a timestamped record). Lists what to include (date of service, account number, exact bill and EOB amounts, a numbered list of specific requests, a request to hold collections, contact info) and what to avoid (emotional language, hardship explanations that don't address the numbers). Includes a full copyable letter template.
+
+
 - Privacy Policy (/privacy): no server-side storage of bill/EOB data; local-storage-only for in-progress form entries; no tracking cookies; children's privacy statement; contact for privacy questions.
 - Terms of Service (/terms): describes the service, disclaims professional advice and guaranteed outcomes, disclaims warranties, limits liability, covers future paid tiers.
 - Refund Policy (/refund-policy): 14-day refund window for unused paid reports once checkout is live; how to request a refund; processing time 5–10 business days.

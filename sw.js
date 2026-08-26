@@ -1,5 +1,5 @@
-const CACHE = 'eobcheck-v7';
-const ASSETS = ['/', '/privacy', '/terms', '/refund-policy', '/sitemap', '/manifest.json', '/icon.svg', '/favicon.ico', '/favicon-48.png', '/favicon-192.png', '/favicon-512.png', '/apple-touch-icon.png'];
+const CACHE = 'eobcheck-v8';
+const ASSETS = ['/', '/privacy', '/terms', '/refund-policy', '/sitemap', '/manifest.json', '/icon.svg', '/favicon.ico', '/favicon-48.png', '/favicon-192.png', '/favicon-512.png', '/apple-touch-icon.png', '/blog', '/blog/why-medical-bill-doesnt-match-eob', '/blog/how-to-read-an-eob', '/blog/good-faith-estimate-dispute-guide', '/blog/bill-higher-than-eob', '/blog/medical-bill-dispute-letter-template'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)));

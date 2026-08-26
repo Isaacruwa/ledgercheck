@@ -7,6 +7,42 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://www.eobcheck.online/blog</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.eobcheck.online/blog/why-medical-bill-doesnt-match-eob</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.eobcheck.online/blog/how-to-read-an-eob</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.eobcheck.online/blog/good-faith-estimate-dispute-guide</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.eobcheck.online/blog/bill-higher-than-eob</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.eobcheck.online/blog/medical-bill-dispute-letter-template</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.eobcheck.online/privacy</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>yearly</changefreq>

@@ -411,7 +411,7 @@
     50%{transform:scale(1.08); box-shadow:0 0 0 10px rgba(31,75,68,0);}
   }
   @media (prefers-reduced-motion: reduce){ .checkout-panel-loading .checkout-loader-mark{animation:none;} }
-  #paddleInlineContainer{padding:0 4px 4px; min-height:450px;}
+  #paddleInlineContainer{padding:0 4px 4px; min-height:450px; display:none;}
   .install-toast button{color:var(--white); border-color:rgba(255,255,255,.4);}
 </style>
 </head>
@@ -792,7 +792,9 @@
       if (event && event.name === 'checkout.loaded'){
         clearTimeout(checkoutPanelTimeout);
         const loading = document.getElementById('checkoutPanelLoading');
+        const container = document.getElementById('paddleInlineContainer');
         if (loading) loading.style.display = 'none';
+        if (container) container.style.display = 'block';
       }
       if (event && event.name === 'checkout.error'){
         closeCheckoutPanel();
@@ -854,6 +856,7 @@ function openCheckoutPanel(){
   const container = document.getElementById('paddleInlineContainer');
   if (!panel) return;
   container.innerHTML = '';
+  container.style.display = 'none';
   loading.style.display = 'flex';
   loading.querySelector('p').textContent = 'Loading secure checkout…';
   panel.classList.add('show');

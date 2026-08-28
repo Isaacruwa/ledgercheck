@@ -380,7 +380,7 @@
   .checkout-panel-card{
     background:var(--card); border-radius:16px; width:100%; max-width:480px;
     box-shadow:0 30px 70px -20px rgba(18,51,46,.5); overflow:hidden;
-    max-height:90vh; display:flex; flex-direction:column;
+    max-height:90vh; display:flex; flex-direction:column; position:relative;
   }
   .checkout-panel-header{
     display:flex; align-items:center; justify-content:space-between;
@@ -393,10 +393,12 @@
   }
   .checkout-panel-close:hover{color:var(--ink);}
   .checkout-panel-loading{
+    position:absolute; top:57px; left:0; right:0; bottom:0; z-index:2;
+    background:var(--card);
     display:flex; flex-direction:column; align-items:center; justify-content:center;
     padding:60px 20px; gap:16px;
   }
-  .checkout-panel-loading p{font-family:var(--font-mono); font-size:.82rem; color:var(--ink-soft); margin:0;}
+  .checkout-panel-loading p{font-family:var(--font-mono); font-size:.82rem; color:var(--ink-soft); margin:0; max-width:280px; text-align:center;}
   .checkout-panel-loading .checkout-loader-mark{
     width:56px; height:56px; border-radius:14px; background:var(--teal); position:relative;
     animation:loaderPulse 1.1s ease-in-out infinite;
@@ -411,7 +413,7 @@
     50%{transform:scale(1.08); box-shadow:0 0 0 10px rgba(31,75,68,0);}
   }
   @media (prefers-reduced-motion: reduce){ .checkout-panel-loading .checkout-loader-mark{animation:none;} }
-  #paddleInlineContainer{padding:0 4px 4px; min-height:450px; display:none;}
+  #paddleInlineContainer{padding:0 4px 4px; min-height:450px;}
   .install-toast button{color:var(--white); border-color:rgba(255,255,255,.4);}
 </style>
 </head>
@@ -777,7 +779,7 @@
       <span class="checkout-loader-mark" aria-hidden="true"></span>
       <p>Loading secure checkout…</p>
     </div>
-    <div id="paddleInlineContainer"></div>
+    <div id="paddleInlineContainer" class="paddleInlineContainer"></div>
   </div>
 </div>
 
@@ -788,13 +790,19 @@
   Paddle.Environment.set('production');
   Paddle.Initialize({
     token: 'live_dd1a20ac6d4aeec5d7a6a70adaa',
+    checkout: {
+      settings: {
+        displayMode: 'inline',
+        frameTarget: 'paddleInlineContainer',
+        frameInitialHeight: 450,
+        frameStyle: 'width: 100%; min-width: 312px; background-color: transparent; border: none;'
+      }
+    },
     eventCallback: function(event){
       if (event && event.name === 'checkout.loaded'){
         clearTimeout(checkoutPanelTimeout);
         const loading = document.getElementById('checkoutPanelLoading');
-        const container = document.getElementById('paddleInlineContainer');
         if (loading) loading.style.display = 'none';
-        if (container) container.style.display = 'block';
       }
       if (event && event.name === 'checkout.error'){
         closeCheckoutPanel();
@@ -838,7 +846,7 @@
       items: [{ priceId: btn.getAttribute('data-paddle-price'), quantity: 1 }],
       settings: {
         displayMode: 'inline',
-        frameTarget: '#paddleInlineContainer',
+        frameTarget: 'paddleInlineContainer',
         frameInitialHeight: 450,
         frameStyle: 'width: 100%; min-height: 450px; background-color: transparent; border: none;',
         successUrl: window.location.href
@@ -856,7 +864,6 @@ function openCheckoutPanel(){
   const container = document.getElementById('paddleInlineContainer');
   if (!panel) return;
   container.innerHTML = '';
-  container.style.display = 'none';
   loading.style.display = 'flex';
   loading.querySelector('p').textContent = 'Loading secure checkout…';
   panel.classList.add('show');

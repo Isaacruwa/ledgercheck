@@ -411,7 +411,7 @@
     50%{transform:scale(1.08); box-shadow:0 0 0 10px rgba(31,75,68,0);}
   }
   @media (prefers-reduced-motion: reduce){ .checkout-panel-loading .checkout-loader-mark{animation:none;} }
-  #paddleInlineContainer{padding:0 4px 4px;}
+  #paddleInlineContainer{padding:0 4px 4px; min-height:450px;}
   .install-toast button{color:var(--white); border-color:rgba(255,255,255,.4);}
 </style>
 </head>
@@ -790,6 +790,7 @@
     token: 'live_dd1a20ac6d4aeec5d7a6a70adaa',
     eventCallback: function(event){
       if (event && event.name === 'checkout.loaded'){
+        clearTimeout(checkoutPanelTimeout);
         const loading = document.getElementById('checkoutPanelLoading');
         if (loading) loading.style.display = 'none';
       }
@@ -838,7 +839,6 @@
         frameTarget: '#paddleInlineContainer',
         frameInitialHeight: 450,
         frameStyle: 'width: 100%; min-height: 450px; background-color: transparent; border: none;',
-        theme: 'light',
         successUrl: window.location.href
       }
     });
@@ -847,6 +847,7 @@
   document.getElementById('checkoutPanelClose').addEventListener('click', closeCheckoutPanel);
 })();
 
+let checkoutPanelTimeout = null;
 function openCheckoutPanel(){
   const panel = document.getElementById('checkoutPanel');
   const loading = document.getElementById('checkoutPanelLoading');
@@ -854,14 +855,23 @@ function openCheckoutPanel(){
   if (!panel) return;
   container.innerHTML = '';
   loading.style.display = 'flex';
+  loading.querySelector('p').textContent = 'Loading secure checkout…';
   panel.classList.add('show');
   document.body.style.overflow = 'hidden';
+
+  clearTimeout(checkoutPanelTimeout);
+  checkoutPanelTimeout = setTimeout(() => {
+    if (loading.style.display !== 'none'){
+      loading.querySelector('p').innerHTML = "This is taking longer than usual. <a href=\"#\" onclick=\"location.reload(); return false;\" style=\"color:var(--teal); text-decoration:underline;\">Refresh and try again</a>, or check your connection.";
+    }
+  }, 10000);
 }
 function closeCheckoutPanel(){
   const panel = document.getElementById('checkoutPanel');
   if (!panel) return;
   panel.classList.remove('show');
   document.body.style.overflow = '';
+  clearTimeout(checkoutPanelTimeout);
 }
 
 // ---------- Service worker ----------

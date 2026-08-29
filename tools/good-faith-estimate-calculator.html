@@ -1,1 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Good Faith Estimate Calculator — Check the $400 Rule | EOBCheck</title>
+<meta name="description" content="Free calculator: check whether your final medical bill is $400 or more above your Good Faith Estimate, which may make you eligible for a federal dispute.">
+<link rel="canonical" href="https://www.eobcheck.online/tools/good-faith-estimate-calculator">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/icon.svg">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Good Faith Estimate Calculator — Check the $400 Rule">
+<meta property="og:description" content="Free calculator: check whether your final medical bill is $400 or more above your Good Faith Estimate, which may make you eligible for a federal dispute.">
+<meta property="og:url" content="https://www.eobcheck.online/tools/good-faith-estimate-calculator">
+<meta property="og:image" content="https://www.eobcheck.online/og-image.png">
+<meta property="og:site_name" content="EOBCheck">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.eobcheck.online/og-image.png">
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "EOBCheck", "item": "https://www.eobcheck.online/" },
+        { "@type": "ListItem", "position": 2, "name": "Good Faith Estimate Calculator", "item": "https://www.eobcheck.online/tools/good-faith-estimate-calculator" }
+      ]
+    },
+    {
+      "@type": "WebApplication",
+      "name": "Good Faith Estimate Calculator",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any (web browser)",
+      "description": "Checks whether a final medical bill is $400 or more above a Good Faith Estimate, the federal threshold for a Patient-Provider Dispute Resolution filing.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "url": "https://www.eobcheck.online/tools/good-faith-estimate-calculator"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the Good Faith Estimate $400 rule?",
+          "acceptedAnswer": { "@type": "Answer", "text": "If an uninsured or self-pay patient's final bill from a provider or facility is $400 or more above the Good Faith Estimate they were given before a scheduled service, they may be eligible to dispute the charge through a federal Patient-Provider Dispute Resolution process." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the $400 threshold combined across all my providers?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. The threshold is calculated per provider or facility, not combined across everyone who billed for a single treatment." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#EFF2F0;--ink:#182420;--ink-soft:#515D57;--teal:#1F4B44;--teal-deep:#12332E;--red:#B8412B;--red-soft:#F5DFD9;--amber:#A5722B;--amber-soft:#F3E7D3;--green:#3B6E52;--green-soft:#DDE9E0;--line:#CBD4CE;--card:#FBFCFB;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',system-ui,sans-serif;line-height:1.65;}
+  .wrap{max-width:640px;margin:0 auto;padding:0 24px;}
+  header{border-bottom:1px solid var(--line);padding:18px 0;}
+  .logo{font-family:'Fraunces',serif;font-weight:600;font-size:1.2rem;color:var(--teal-deep);text-decoration:none;display:flex;align-items:center;gap:.5em;}
+  .logo .mark{width:22px;height:22px;border-radius:6px;background:var(--teal);position:relative;flex:none;}
+  .logo .mark::before,.logo .mark::after{content:"";position:absolute;left:4px;right:4px;height:2px;background:var(--paper);border-radius:2px;}
+  .logo .mark::before{top:7px;} .logo .mark::after{top:12px;right:8px;}
+  .breadcrumb{font-size:.82rem;color:var(--ink-soft);margin:18px 0 4px;}
+  .breadcrumb a{color:var(--ink-soft);}
+  main{padding:20px 0 70px;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);display:block;margin-bottom:.6em;}
+  h1{font-family:'Fraunces',serif;font-size:2rem;line-height:1.15;color:var(--teal-deep);margin:0 0 .35em;}
+  .lede{font-size:1.05rem;color:var(--ink-soft);margin-bottom:1.8em;}
+  h2{font-family:'Fraunces',serif;font-size:1.35rem;color:var(--teal-deep);margin:1.8em 0 .5em;}
+  p,li{color:var(--ink);}
+  a{color:var(--teal);}
+
+  .calc-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px 26px;box-shadow:0 20px 50px -30px rgba(18,51,46,.35);}
+  .field{display:flex;flex-direction:column;gap:6px;margin-bottom:18px;}
+  .field label{font-size:.9rem;font-weight:600;color:var(--ink);}
+  .field input{font-family:'IBM Plex Mono',monospace;font-size:1.05rem;padding:.7em .8em;border-radius:8px;border:1.5px solid var(--line);background:#fff;color:var(--ink);}
+  .field input:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(31,75,68,.12);}
+  .btn{font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:.98rem;border-radius:999px;padding:.85em 1.6em;border:none;cursor:pointer;background:var(--teal);color:#fff;width:100%;}
+  .btn:hover{background:var(--teal-deep);}
+
+  .result{margin-top:20px;padding:18px 20px;border-radius:10px;font-size:.95rem;display:none;}
+  .result.show{display:block;}
+  .result.eligible{background:var(--amber-soft);border:1.5px solid var(--amber);}
+  .result.not-eligible{background:var(--green-soft);border:1.5px solid var(--green);}
+  .result strong{display:block;margin-bottom:6px;font-size:1.05rem;}
+  .result .amt{font-family:'IBM Plex Mono',monospace;font-weight:700;}
+
+  .cta-box{background:var(--teal);color:#fff;border-radius:12px;padding:26px;margin:2em 0;}
+  .cta-box h3{color:#fff;margin:0 0 .4em;font-family:'Fraunces',serif;}
+  .cta-box p{color:rgba(255,255,255,.85);margin:0 0 1em;}
+  .cta-box a.btn2{display:inline-block;background:#fff;color:var(--teal-deep);font-weight:600;padding:.7em 1.4em;border-radius:999px;text-decoration:none;}
+
+  .faq-item{border-top:1px solid var(--line);padding:16px 0;}
+  .faq-item h3{font-size:1.02rem;margin:0 0 6px;color:var(--teal-deep);}
+  .faq-item p{color:var(--ink-soft);font-size:.94rem;margin:0;}
+
+  footer{border-top:1px solid var(--line);padding:24px 0;font-size:.85rem;color:var(--ink-soft);}
+  footer a{color:var(--ink-soft);margin-right:16px;}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a href="/" class="logo"><span class="mark" aria-hidden="true"></span>EOBCheck</a></div></header>
+<main>
+  <div class="wrap">
+    <p class="breadcrumb"><a href="/">Home</a> / Good Faith Estimate Calculator</p>
+    <span class="eyebrow">Free Tool</span>
+    <h1>Good Faith Estimate Calculator: Check the $400 Rule</h1>
+    <p class="lede">If you're uninsured or self-pay and got a written cost estimate before a scheduled service, enter your numbers below to check instantly whether your final bill crosses the federal $400 dispute threshold.</p>
+
+    <div class="calc-card">
+      <div class="field">
+        <label for="gfeAmount">Your Good Faith Estimate total</label>
+        <input type="number" inputmode="decimal" id="gfeAmount" placeholder="0.00">
+      </div>
+      <div class="field">
+        <label for="billAmount">Your final bill (amount you owe)</label>
+        <input type="number" inputmode="decimal" id="billAmount" placeholder="0.00">
+      </div>
+      <button type="button" class="btn" id="checkBtn">Check my eligibility</button>
+
+      <div class="result" id="result"></div>
+    </div>
+
+    <div class="cta-box">
+      <h3>Have an EOB too, not just a bill and estimate?</h3>
+      <p>EOBCheck's free tool reconciles your full bill against your insurance EOB — not just the Good Faith Estimate — and drafts your dispute letter automatically.</p>
+      <a href="/#app" class="btn2">Check my full bill — free</a>
+    </div>
+
+    <h2>Frequently asked</h2>
+    <div class="faq-item">
+      <h3>What is the Good Faith Estimate $400 rule?</h3>
+      <p>If an uninsured or self-pay patient's final bill from a provider or facility is $400 or more above the Good Faith Estimate they were given before a scheduled service, they may be eligible to dispute the charge through a federal Patient-Provider Dispute Resolution process.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is the $400 threshold combined across all my providers?</h3>
+      <p>No. It's calculated per provider or facility, not combined across everyone who billed you for one treatment. A patient billed separately by several providers, each under $400 over their own estimate, may not qualify even if the combined overage is large.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is this legal advice?</h3>
+      <p>No. This is an informational calculator, not legal or financial advice. Eligibility depends on additional requirements (such as insurance status and filing windows) that can change — verify your specific situation before relying on this.</p>
+    </div>
+
+    <p style="margin-top:2em;">Want the full walkthrough? Read our <a href="/blog/good-faith-estimate-dispute-guide">complete guide to the Good Faith Estimate dispute process</a>.</p>
+  </div>
+</main>
+<footer><div class="wrap"><a href="/">Home</a><a href="/blog">Blog</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/refund-policy">Refunds</a><a href="/sitemap">Site Directory</a></div></footer>
+
+<script>
+function fmt(n){
+  const sign = n < 0 ? '-' : '';
+  return sign + '$' + Math.abs(n).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0});
+}
+
+document.getElementById('checkBtn').addEventListener('click', () => {
+  const gfe = parseFloat(document.getElementById('gfeAmount').value);
+  const bill = parseFloat(document.getElementById('billAmount').value);
+  const resultEl = document.getElementById('result');
+
+  if (isNaN(gfe) || isNaN(bill)) {
+    resultEl.className = 'result show not-eligible';
+    resultEl.innerHTML = '<strong>Enter both numbers</strong>Fill in your Good Faith Estimate and your final bill amount to check.';
+    return;
+  }
+
+  const diff = +(bill - gfe).toFixed(2);
+  const eligible = diff >= 400;
+
+  if (eligible) {
+    resultEl.className = 'result show eligible';
+    resultEl.innerHTML = `<strong>You may be eligible for a dispute</strong>Your bill is <span class="amt">${fmt(diff)}</span> more than your Good Faith Estimate (${fmt(gfe)}), which is at or above the federal $400 threshold. Eligibility depends on additional requirements (such as being uninsured or self-pay and filing within the applicable window) — verify your specific situation before filing.`;
+  } else {
+    resultEl.className = 'result show not-eligible';
+    resultEl.innerHTML = `<strong>Below the dispute threshold</strong>Your bill is <span class="amt">${fmt(Math.max(diff,0))}</span> above your estimate, which is under the $400 federal threshold typically required to dispute.`;
+  }
+});
+</script>
+</body>
+</html>

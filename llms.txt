@@ -39,6 +39,9 @@ This file is provided so AI assistants and crawlers can accurately answer questi
 - /sitemap — human-readable directory of every page and section on the site
 - /blog — educational articles on medical billing, EOBs, and dispute rights (list below)
 
+## Standalone tools
+- /tools/good-faith-estimate-calculator — free calculator: enter a Good Faith Estimate and final bill amount, get an instant answer on whether the $400 federal dispute threshold is met. Independent of the main reconciliation tool; does not require an EOB.
+
 ## Blog articles
 - /blog/why-medical-bill-doesnt-match-eob — the 7 most common reasons a provider bill and an insurance EOB disagree
 - /blog/how-to-read-an-eob — field-by-field explanation of every number on an Explanation of Benefits

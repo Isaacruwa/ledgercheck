@@ -3,7 +3,15 @@
 > This file contains the complete factual content of EOBCheck (www.eobcheck.online) in plain text, so AI assistants can answer detailed questions or cite specific facts without fetching and rendering the live page. See /llms.txt for the short summary. See / for the interactive tool itself.
 
 ## Product summary
-EOBCheck lets a patient enter figures from a medical provider bill, an insurer's Explanation of Benefits (EOB), and optionally a Good Faith Estimate (GFE). It reconciles the numbers, flags discrepancies, checks GFE dispute eligibility, and generates a dispute letter — entirely in the browser, free, no account required.
+EOBCheck lets a patient enter figures from a medical provider bill, an insurer's Explanation of Benefits (EOB), and optionally a Good Faith Estimate (GFE) — either by typing them in manually (free tier), or, on the paid Full Report/Complex Bill tiers, by uploading a photo or PDF that's processed client-side to suggest amounts. It reconciles the numbers, flags discrepancies, checks GFE dispute eligibility, and generates a dispute letter — entirely in the browser, no account required for the free tier.
+
+## Document upload and OCR (paid tiers only)
+- Available on the Full Report ($9.99) and Complex Bill ($29–49) tiers, not the free tier.
+- Photo uploads are processed with Tesseract.js (OCR via WebAssembly); PDF uploads are processed with pdf.js (text extraction). Both run entirely in the visitor's browser.
+- The uploaded file itself is never sent to a server — this preserves the same "nothing leaves your browser" privacy model as the rest of the free tool.
+- Extracted dollar amounts are shown as suggestions with surrounding context text; the user taps to place a suggested value into a specific field (e.g., "amount owed" vs. "total billed"). Values are never auto-submitted without the user placing them.
+- Complex Bill tier additionally supports reconciling multiple providers together (one bill/EOB pair per provider), with a combined variance total and one generated letter per provider.
+- Full Report/Complex Bill tiers also include a "My Disputes" tracker: users can save a dispute record and manually update its status (Sent / Waiting on provider / Waiting on insurer / Resolved). This is stored only in the browser's local storage — there is no backend, so it does not automatically monitor email or send follow-ups.
 
 ## Full reconciliation logic (as implemented)
 1. Variance = (amount owed per bill) − (patient responsibility per EOB).

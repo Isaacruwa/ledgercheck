@@ -1,1 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EOBCheck Quick Check</title>
+<meta name="robots" content="noindex, follow">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<style>
+  *{box-sizing:border-box;}
+  html,body{margin:0;background:transparent;}
+  body{
+    font-family:'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+    color:#182420; padding:16px; background:#EFF2F0; border-radius:10px;
+  }
+  .widget-header{display:flex; align-items:center; gap:8px; margin-bottom:12px;}
+  .mark{width:20px;height:20px;border-radius:5px;background:#1F4B44;position:relative;flex:none;}
+  .mark::before,.mark::after{content:"";position:absolute;left:3px;right:3px;height:2px;background:#EFF2F0;border-radius:2px;}
+  .mark::before{top:6px;} .mark::after{top:10px;right:7px;}
+  .widget-title{font-weight:600; font-size:.92rem; color:#12332E;}
+  .field{margin-bottom:10px;}
+  .field label{display:block; font-size:.78rem; font-weight:600; margin-bottom:4px; color:#182420;}
+  .field input{
+    width:100%; font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:.92rem;
+    padding:.5em .6em; border-radius:6px; border:1.5px solid #CBD4CE; background:#fff; color:#182420;
+  }
+  .field input:focus{outline:none; border-color:#1F4B44;}
+  .btn{
+    width:100%; font-weight:600; font-size:.9rem; border-radius:999px; padding:.6em 1em;
+    border:none; cursor:pointer; background:#1F4B44; color:#fff; margin-top:2px;
+  }
+  .btn:hover{background:#12332E;}
+  .result{display:none; margin-top:12px; padding:10px 12px; border-radius:8px; font-size:.85rem;}
+  .result.show{display:block;}
+  .result.green{background:#DDE9E0; border:1px solid #3B6E52;}
+  .result.amber{background:#F3E7D3; border:1px solid #A5722B;}
+  .result.red{background:#F5DFD9; border:1px solid #B8412B;}
+  .result strong{display:block; margin-bottom:2px;}
+  .powered{
+    margin-top:12px; text-align:center; font-size:.72rem; color:#515D57;
+  }
+  .powered a{color:#1F4B44; text-decoration:none; font-weight:600;}
+  .powered a:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+  <div class="widget-header"><span class="mark" aria-hidden="true"></span><span class="widget-title">Quick bill check</span></div>
 
+  <div class="field">
+    <label for="ew-bill">Bill says you owe</label>
+    <input type="number" inputmode="decimal" id="ew-bill" placeholder="0.00">
+  </div>
+  <div class="field">
+    <label for="ew-eob">EOB patient responsibility</label>
+    <input type="number" inputmode="decimal" id="ew-eob" placeholder="0.00">
+  </div>
+  <button type="button" class="btn" id="ew-check">Check</button>
+
+  <div class="result" id="ew-result"></div>
+
+  <p class="powered">Powered by <a href="https://www.eobcheck.online/?utm_source=widget&amp;utm_medium=embed" target="_blank" rel="noopener">EOBCheck</a> — free full reconciliation &amp; dispute letters</p>
+
+<script>
+function fmt(n){
+  const sign = n < 0 ? '-' : '';
+  return sign + '$' + Math.abs(n).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0});
+}
+
+document.getElementById('ew-check').addEventListener('click', () => {
+  const bill = parseFloat(document.getElementById('ew-bill').value);
+  const eob = parseFloat(document.getElementById('ew-eob').value);
+  const resultEl = document.getElementById('ew-result');
+
+  if (isNaN(bill) || isNaN(eob)){
+    resultEl.className = 'result show amber';
+    resultEl.innerHTML = '<strong>Enter both numbers</strong>Fill in your bill and EOB amounts to check.';
+    return;
+  }
+
+  const variance = +(bill - eob).toFixed(2);
+
+  if (Math.abs(variance) < 1){
+    resultEl.className = 'result show green';
+    resultEl.innerHTML = '<strong>Consistent</strong>Your bill and EOB agree, within a dollar.';
+  } else if (Math.abs(variance) <= 50){
+    resultEl.className = 'result show amber';
+    resultEl.innerHTML = `<strong>Minor variance: ${fmt(Math.abs(variance))}</strong>Could be rounding or a small fee — worth a quick call to confirm.`;
+  } else {
+    resultEl.className = 'result show red';
+    resultEl.innerHTML = `<strong>Unexplained variance: ${fmt(Math.abs(variance))}</strong>Large enough to ask your provider to explain in writing. Get a free dispute letter at EOBCheck.`;
+  }
+});
+</script>
+</body>
+</html>

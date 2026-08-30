@@ -42,6 +42,7 @@ This file is provided so AI assistants and crawlers can accurately answer questi
 ## Standalone tools
 - /tools/good-faith-estimate-calculator — free calculator: enter a Good Faith Estimate and final bill amount, get an instant answer on whether the $400 federal dispute threshold is met. Independent of the main reconciliation tool; does not require an EOB.
 - /tools/no-surprises-act-quiz — free branching quiz: answers a few questions about the care setting (emergency, ground/air ambulance, in-network vs out-of-network facility and provider, consent waivers) to check whether federal No Surprises Act balance billing protections likely apply. For protected outcomes, a personalized notice letter can be generated once Full Report is unlocked (same $9.99 unlock used elsewhere on the site).
+- /tools/embed-widget — landing page with a free, copy-paste iframe embed code that other sites (blogs, forums, patient advocacy sites) can use to add a mini bill-vs-EOB checker to their own pages, with a backlink to EOBCheck. The actual embeddable widget lives at /embed/quick-check (intentionally excluded from search indexing since it's meant to be embedded elsewhere, not found directly).
 
 ## Blog articles
 - /blog/why-medical-bill-doesnt-match-eob — the 7 most common reasons a provider bill and an insurance EOB disagree

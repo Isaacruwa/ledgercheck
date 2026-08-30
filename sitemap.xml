@@ -55,6 +55,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.eobcheck.online/tools/embed-widget</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.eobcheck.online/privacy</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>yearly</changefreq>

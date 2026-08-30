@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Embed EOBCheck's Free Bill Checker On Your Site | EOBCheck</title>
+<meta name="description" content="Free, copy-paste embeddable widget: add a mini medical bill vs. EOB checker to your blog, forum, or patient advocacy site in one line of code.">
+<link rel="canonical" href="https://www.eobcheck.online/tools/embed-widget">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/icon.svg">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Embed EOBCheck's Free Bill Checker On Your Site">
+<meta property="og:description" content="Free, copy-paste embeddable widget: add a mini medical bill vs. EOB checker to your blog, forum, or patient advocacy site in one line of code.">
+<meta property="og:url" content="https://www.eobcheck.online/tools/embed-widget">
+<meta property="og:image" content="https://www.eobcheck.online/og-image.png">
+<meta property="og:site_name" content="EOBCheck">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.eobcheck.online/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "EOBCheck", "item": "https://www.eobcheck.online/" },
+        { "@type": "ListItem", "position": 2, "name": "Embed the Bill Checker Widget", "item": "https://www.eobcheck.online/tools/embed-widget" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is the EOBCheck embed widget free to use on my site?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. There's no charge, no account, and no permission needed to embed it. Just copy the code onto your page." }
+        },
+        {
+          "@type": "Question",
+          "name": "Will embedding this widget slow down my site?",
+          "acceptedAnswer": { "@type": "Answer", "text": "It loads as a small iframe and does not pull in any tracking scripts or heavy dependencies, so the impact on your page's load time is minimal." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the widget collect any visitor data from my site?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. The numbers a visitor enters are processed entirely in their browser inside the embedded frame and are never sent to a server, the same privacy model as the main EOBCheck tool." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#EFF2F0;--ink:#182420;--ink-soft:#515D57;--teal:#1F4B44;--teal-deep:#12332E;--line:#CBD4CE;--card:#FBFCFB;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',system-ui,sans-serif;line-height:1.65;}
+  .wrap{max-width:680px;margin:0 auto;padding:0 24px;}
+  header{border-bottom:1px solid var(--line);padding:18px 0;}
+  .logo{font-family:'Fraunces',serif;font-weight:600;font-size:1.2rem;color:var(--teal-deep);text-decoration:none;display:flex;align-items:center;gap:.5em;}
+  .logo .mark{width:22px;height:22px;border-radius:6px;background:var(--teal);position:relative;flex:none;}
+  .logo .mark::before,.logo .mark::after{content:"";position:absolute;left:4px;right:4px;height:2px;background:var(--paper);border-radius:2px;}
+  .logo .mark::before{top:7px;} .logo .mark::after{top:12px;right:8px;}
+  .breadcrumb{font-size:.82rem;color:var(--ink-soft);margin:18px 0 4px;}
+  .breadcrumb a{color:var(--ink-soft);}
+  main{padding:20px 0 70px;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);display:block;margin-bottom:.6em;}
+  h1{font-family:'Fraunces',serif;font-size:2rem;line-height:1.15;color:var(--teal-deep);margin:0 0 .35em;}
+  .lede{font-size:1.05rem;color:var(--ink-soft);margin-bottom:1.8em;}
+  h2{font-family:'Fraunces',serif;font-size:1.3rem;color:var(--teal-deep);margin:1.8em 0 .5em;}
+  p,li{color:var(--ink);}
+  a{color:var(--teal);}
+
+  .preview-frame{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:0 20px 50px -30px rgba(18,51,46,.35);}
+  .preview-frame iframe{width:100%;max-width:380px;height:340px;border:none;display:block;margin:0 auto;border-radius:10px;}
+
+  .code-box{background:#12332E;color:#EFF2F0;border-radius:10px;padding:18px 20px;margin:1em 0;font-family:'IBM Plex Mono',monospace;font-size:.82rem;overflow-x:auto;white-space:pre-wrap;word-break:break-all;}
+  .btn-sm{font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:.88rem;border-radius:999px;padding:.6em 1.2em;border:none;cursor:pointer;background:var(--teal);color:#fff;}
+  .btn-sm:hover{background:var(--teal-deep);}
+  .copy-msg{font-size:.82rem;color:var(--teal);margin-left:8px;opacity:0;transition:opacity .2s;}
+  .copy-msg.show{opacity:1;}
+
+  .size-options{display:flex;gap:12px;flex-wrap:wrap;margin:1em 0;}
+  .size-opt{background:var(--card);border:1.5px solid var(--line);border-radius:8px;padding:10px 14px;font-size:.85rem;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;}
+  .size-opt.active{border-color:var(--teal);color:var(--teal-deep);font-weight:600;}
+
+  .faq-item{border-top:1px solid var(--line);padding:16px 0;}
+  .faq-item h3{font-size:1.02rem;margin:0 0 6px;color:var(--teal-deep);}
+  .faq-item p{color:var(--ink-soft);font-size:.94rem;margin:0;}
+
+  footer{border-top:1px solid var(--line);padding:24px 0;font-size:.85rem;color:var(--ink-soft);}
+  footer a{color:var(--ink-soft);margin-right:16px;}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a href="/" class="logo"><span class="mark" aria-hidden="true"></span>EOBCheck</a></div></header>
+<main>
+  <div class="wrap">
+    <p class="breadcrumb"><a href="/">Home</a> / Embed the Bill Checker Widget</p>
+    <span class="eyebrow">Free, No Sign-Up</span>
+    <h1>Embed EOBCheck's Bill Checker On Your Site</h1>
+    <p class="lede">Run a health blog, patient advocacy site, or forum? Add a free, working mini bill-vs-EOB checker to your page in one line of code — no account, no fee, no permission needed.</p>
+
+    <h2>Live preview</h2>
+    <div class="preview-frame">
+      <iframe src="https://www.eobcheck.online/embed/quick-check" title="EOBCheck Quick Check widget preview" loading="lazy"></iframe>
+    </div>
+
+    <h2>Copy the code</h2>
+    <p>Paste this directly into your page's HTML, wherever you want the widget to appear:</p>
+    <div class="size-options">
+      <button type="button" class="size-opt active" data-w="100%" data-h="420" data-maxw="400px">Standard (400px)</button>
+      <button type="button" class="size-opt" data-w="100%" data-h="380" data-maxw="320px">Compact (320px)</button>
+      <button type="button" class="size-opt" data-w="100%" data-h="460" data-maxw="480px">Wide (480px)</button>
+    </div>
+    <div class="code-box" id="embedCode"></div>
+    <button type="button" class="btn-sm" id="copyCode">Copy code</button>
+    <span class="copy-msg" id="copyMsg">Copied ✓</span>
+
+    <h2>What your visitors see</h2>
+    <p>A compact form asking for their bill's "amount owed" and their EOB's "patient responsibility." It flags whether the two match, differ slightly, or differ enough to be worth disputing — the same core check as the main EOBCheck tool, just condensed. A "Powered by EOBCheck" link at the bottom sends anyone who wants the full reconciliation, letter generator, and Good Faith Estimate check back to the main site.</p>
+
+    <h2>Frequently asked</h2>
+    <div class="faq-item">
+      <h3>Is this free to use on my site?</h3>
+      <p>Yes. No charge, no account, no permission needed — just copy the code.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Will it slow down my site?</h3>
+      <p>It loads as a small iframe with no tracking scripts or heavy dependencies, so the impact on load time is minimal.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Does it collect any data from my visitors?</h3>
+      <p>No. Numbers entered are processed entirely in the visitor's browser inside the embedded frame and are never sent to a server — the same privacy model as the main EOBCheck tool.</p>
+    </div>
+  </div>
+</main>
+<footer><div class="wrap"><a href="/">Home</a><a href="/blog">Blog</a><a href="/tools/good-faith-estimate-calculator">GFE Calculator</a><a href="/tools/no-surprises-act-quiz">NSA Quiz</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/sitemap">Site Directory</a></div></footer>
+
+<script>
+function buildCode(w, h, maxw){
+  return `<iframe src="https://www.eobcheck.online/embed/quick-check" width="${w}" height="${h}" style="border:none; max-width:${maxw}; display:block;" title="EOBCheck Quick Bill Checker" loading="lazy"></iframe>`;
+}
+
+let currentCode = buildCode('100%', '420', '400px');
+document.getElementById('embedCode').textContent = currentCode;
+
+document.querySelectorAll('.size-opt').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.size-opt').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentCode = buildCode(btn.dataset.w, btn.dataset.h, btn.dataset.maxw);
+    document.getElementById('embedCode').textContent = currentCode;
+  });
+});
+
+document.getElementById('copyCode').addEventListener('click', async () => {
+  const msg = document.getElementById('copyMsg');
+  try {
+    await navigator.clipboard.writeText(currentCode);
+  } catch(e){
+    const ta = document.createElement('textarea');
+    ta.value = currentCode;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+  }
+  msg.classList.add('show');
+  setTimeout(() => msg.classList.remove('show'), 1800);
+});
+</script>
+</body>
+</html>

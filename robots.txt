@@ -3,6 +3,16 @@
 User-agent: *
 Allow: /
 
+# --- Primary search engine crawlers (explicit, in addition to the wildcard above) ---
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
 # --- AI assistants / LLM crawlers ---
 # These are explicitly allowed so AI tools can read and cite EOBCheck
 # directly, without needing to fetch heavy or duplicate content.

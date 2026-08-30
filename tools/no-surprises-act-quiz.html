@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>No Surprises Act Quiz: Am I Protected From This Bill? | EOBCheck</title>
+<meta name="description" content="Free quiz: answer a few questions about your medical bill to check whether federal No Surprises Act balance billing protections likely apply to your situation.">
+<link rel="canonical" href="https://www.eobcheck.online/tools/no-surprises-act-quiz">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/icon.svg">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="No Surprises Act Quiz: Am I Protected From This Bill?">
+<meta property="og:description" content="Free quiz: answer a few questions about your medical bill to check whether federal No Surprises Act balance billing protections likely apply to your situation.">
+<meta property="og:url" content="https://www.eobcheck.online/tools/no-surprises-act-quiz">
+<meta property="og:image" content="https://www.eobcheck.online/og-image.png">
+<meta property="og:site_name" content="EOBCheck">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.eobcheck.online/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "EOBCheck", "item": "https://www.eobcheck.online/" },
+        { "@type": "ListItem", "position": 2, "name": "No Surprises Act Quiz", "item": "https://www.eobcheck.online/tools/no-surprises-act-quiz" }
+      ]
+    },
+    {
+      "@type": "WebApplication",
+      "name": "No Surprises Act Quiz",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any (web browser)",
+      "description": "A short branching quiz that checks whether federal No Surprises Act balance billing protections likely apply to a specific medical bill scenario.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "url": "https://www.eobcheck.online/tools/no-surprises-act-quiz"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does the No Surprises Act cover ground ambulance bills?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Ground ambulance transport is not covered by the federal No Surprises Act — this is a well-known gap in the law. Some states have their own ground ambulance balance billing protections for fully insured plans, so it's worth checking your state's specific rules." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I waive my No Surprises Act protections?",
+          "acceptedAnswer": { "@type": "Answer", "text": "For certain non-emergency services where you knowingly choose an out-of-network provider at an in-network facility, a valid written notice-and-consent form signed in advance can waive protections for that specific provider. Waivers are never allowed for emergency services, ancillary specialists you didn't choose (like an anesthesiologist or radiologist), or air ambulance services." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#EFF2F0;--ink:#182420;--ink-soft:#515D57;--teal:#1F4B44;--teal-deep:#12332E;--red:#B8412B;--red-soft:#F5DFD9;--amber:#A5722B;--amber-soft:#F3E7D3;--green:#3B6E52;--green-soft:#DDE9E0;--line:#CBD4CE;--card:#FBFCFB;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',system-ui,sans-serif;line-height:1.65;}
+  .wrap{max-width:640px;margin:0 auto;padding:0 24px;}
+  header{border-bottom:1px solid var(--line);padding:18px 0;}
+  .logo{font-family:'Fraunces',serif;font-weight:600;font-size:1.2rem;color:var(--teal-deep);text-decoration:none;display:flex;align-items:center;gap:.5em;}
+  .logo .mark{width:22px;height:22px;border-radius:6px;background:var(--teal);position:relative;flex:none;}
+  .logo .mark::before,.logo .mark::after{content:"";position:absolute;left:4px;right:4px;height:2px;background:var(--paper);border-radius:2px;}
+  .logo .mark::before{top:7px;} .logo .mark::after{top:12px;right:8px;}
+  .breadcrumb{font-size:.82rem;color:var(--ink-soft);margin:18px 0 4px;}
+  .breadcrumb a{color:var(--ink-soft);}
+  main{padding:20px 0 70px;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);display:block;margin-bottom:.6em;}
+  h1{font-family:'Fraunces',serif;font-size:2rem;line-height:1.15;color:var(--teal-deep);margin:0 0 .35em;}
+  .lede{font-size:1.05rem;color:var(--ink-soft);margin-bottom:1.8em;}
+  h2{font-family:'Fraunces',serif;font-size:1.35rem;color:var(--teal-deep);margin:1.8em 0 .5em;}
+  p,li{color:var(--ink);}
+  a{color:var(--teal);}
+
+  .quiz-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px 26px;box-shadow:0 20px 50px -30px rgba(18,51,46,.35);}
+  .quiz-progress{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;}
+  .quiz-question{font-weight:600;font-size:1.1rem;margin-bottom:18px;color:var(--teal-deep);}
+  .quiz-options{display:flex;flex-direction:column;gap:10px;}
+  .quiz-opt{text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:14px 16px;font-family:'IBM Plex Sans',sans-serif;font-size:.98rem;cursor:pointer;color:var(--ink);}
+  .quiz-opt:hover{border-color:var(--teal);}
+  .quiz-back{background:none;border:none;color:var(--ink-soft);font-size:.85rem;cursor:pointer;margin-top:16px;padding:0;}
+  .quiz-back:hover{color:var(--teal);}
+
+  .result-banner{padding:18px 20px;border-radius:10px;margin-bottom:18px;}
+  .result-banner.protected{background:var(--green-soft);border:1.5px solid var(--green);}
+  .result-banner.not-protected{background:var(--red-soft);border:1.5px solid var(--red);}
+  .result-banner.maybe{background:var(--amber-soft);border:1.5px solid var(--amber);}
+  .result-banner strong{display:block;font-size:1.1rem;margin-bottom:6px;}
+  .result-banner p{margin:0;font-size:.95rem;}
+
+  .letter-locked{border:1.5px dashed var(--line);border-radius:8px;padding:16px 18px;background:var(--paper);display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;}
+  .letter-locked .lt-text{font-size:.9rem;color:var(--ink-soft);}
+  .letter-locked .lt-text strong{color:var(--ink);display:block;margin-bottom:2px;}
+  .btn-sm{font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:.88rem;border-radius:999px;padding:.6em 1.2em;border:none;cursor:pointer;background:var(--teal);color:#fff;text-decoration:none;display:inline-block;}
+  .btn-sm:hover{background:var(--teal-deep);}
+  .letter-box{background:#fff;border:1px solid var(--line);border-radius:8px;padding:18px;margin-top:14px;}
+  .letter-box textarea{width:100%;min-height:280px;font-family:'IBM Plex Mono',monospace;font-size:.85rem;line-height:1.6;border:none;resize:vertical;background:transparent;color:var(--ink);}
+  .letter-box textarea:focus{outline:none;}
+
+  .cta-box{background:var(--teal);color:#fff;border-radius:12px;padding:26px;margin:2em 0;}
+  .cta-box h3{color:#fff;margin:0 0 .4em;font-family:'Fraunces',serif;}
+  .cta-box p{color:rgba(255,255,255,.85);margin:0 0 1em;}
+  .cta-box a.btn2{display:inline-block;background:#fff;color:var(--teal-deep);font-weight:600;padding:.7em 1.4em;border-radius:999px;text-decoration:none;}
+
+  .faq-item{border-top:1px solid var(--line);padding:16px 0;}
+  .faq-item h3{font-size:1.02rem;margin:0 0 6px;color:var(--teal-deep);}
+  .faq-item p{color:var(--ink-soft);font-size:.94rem;margin:0;}
+
+  footer{border-top:1px solid var(--line);padding:24px 0;font-size:.85rem;color:var(--ink-soft);}
+  footer a{color:var(--ink-soft);margin-right:16px;}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a href="/" class="logo"><span class="mark" aria-hidden="true"></span>EOBCheck</a></div></header>
+<main>
+  <div class="wrap">
+    <p class="breadcrumb"><a href="/">Home</a> / No Surprises Act Quiz</p>
+    <span class="eyebrow">Free Tool</span>
+    <h1>No Surprises Act Quiz: Am I Protected From This Bill?</h1>
+    <p class="lede">Federal balance billing protections cover more than most people realize — but they have real, specific gaps (ground ambulances being the biggest one). Answer a few questions about your situation to check where it likely stands.</p>
+
+    <div class="quiz-card" id="quizCard"></div>
+
+    <h2>Frequently asked</h2>
+    <div class="faq-item">
+      <h3>Does the No Surprises Act cover ground ambulance bills?</h3>
+      <p>No. Ground ambulance transport is not covered by the federal law — a well-known gap. Some states have their own ground ambulance balance billing protections for fully insured plans, so it's worth checking your state's rules separately.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I waive my No Surprises Act protections?</h3>
+      <p>For certain non-emergency services where you knowingly choose an out-of-network provider at an in-network facility, a valid written notice-and-consent form signed in advance can waive protections for that specific provider. Waivers are never allowed for emergency services, ancillary specialists you didn't personally choose, or air ambulance services.</p>
+    </div>
+
+    <div class="cta-box">
+      <h3>Bill and EOB don't match either?</h3>
+      <p>EOBCheck's free tool reconciles your full bill against your insurance EOB and drafts a general dispute letter — separate from the notice above.</p>
+      <a href="/#app" class="btn2">Check my bill — free</a>
+    </div>
+
+    <p style="margin-top:1em;">This quiz covers federal rules only, in general terms, and is not legal advice. Read more in our <a href="/blog/why-medical-bill-doesnt-match-eob">guide to why bills and EOBs disagree</a>.</p>
+  </div>
+</main>
+<footer><div class="wrap"><a href="/">Home</a><a href="/blog">Blog</a><a href="/tools/good-faith-estimate-calculator">GFE Calculator</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/refund-policy">Refunds</a><a href="/sitemap">Site Directory</a></div></footer>
+
+<script>
+function isUnlocked(){
+  try {
+    return localStorage.getItem('eobcheck-unlocked-full') === '1' || localStorage.getItem('eobcheck-unlocked-complex') === '1';
+  } catch(e){ return false; }
+}
+
+const questions = {
+  start: {
+    progress: 'Question 1 of up to 4',
+    q: 'What kind of care was this bill for?',
+    options: [
+      { label: 'Emergency room / urgent emergency care', next: 'result_emergency' },
+      { label: 'Scheduled (non-emergency) care at a hospital or surgical center', next: 'q_facility_network' },
+      { label: 'Ground ambulance transport', next: 'result_ground_ambulance' },
+      { label: 'Air ambulance transport', next: 'result_air_ambulance' },
+      { label: 'A standalone clinic or urgent care (not part of a hospital)', next: 'result_standalone_clinic' }
+    ]
+  },
+  q_facility_network: {
+    progress: 'Question 2 of up to 4',
+    q: 'Was the facility itself (the hospital or surgical center) in your insurance network?',
+    options: [
+      { label: 'Yes, the facility was in-network', next: 'q_provider_network' },
+      { label: 'No, the facility itself was out-of-network', next: 'result_facility_oon' }
+    ]
+  },
+  q_provider_network: {
+    progress: 'Question 3 of up to 4',
+    q: "Was the specific provider who billed you out-of-network, even though the facility was in-network?",
+    options: [
+      { label: 'Yes', next: 'q_ancillary' },
+      { label: 'No, that provider was in-network too', next: 'result_no_issue' }
+    ]
+  },
+  q_ancillary: {
+    progress: 'Question 4 of up to 4',
+    q: 'Was that provider one of these: anesthesiologist, radiologist, pathologist, neonatologist, assistant surgeon, hospitalist, intensivist, or a similar lab/diagnostic role you did not personally choose?',
+    options: [
+      { label: 'Yes, one of these', next: 'result_ancillary_protected' },
+      { label: 'No — I specifically chose this out-of-network provider myself', next: 'q_consent' }
+    ]
+  },
+  q_consent: {
+    progress: 'Question 4 of up to 4',
+    q: 'Did you sign a written notice-and-consent form in advance, specifically agreeing to this out-of-network provider and waiving these protections?',
+    options: [
+      { label: 'Yes, I signed something like that', next: 'result_waived' },
+      { label: 'No, or I\'m not sure', next: 'result_no_consent' }
+    ]
+  }
+};
+
+const results = {
+  result_emergency: {
+    level: 'protected',
+    title: 'Likely protected',
+    desc: "Emergency care is covered regardless of whether the facility or provider is in your insurance network. You generally can't be charged more than your plan's in-network cost-sharing amount for the emergency treatment itself. (Note: if a ground ambulance brought you there, that ride itself is a separate, unprotected gap — see below.)"
+  },
+  result_ground_ambulance: {
+    level: 'not-protected',
+    title: 'Not covered by the federal law',
+    desc: "Ground ambulance transport is specifically excluded from the No Surprises Act — this is the law's best-known gap. Some states have their own ground ambulance balance billing protections for fully insured plans, so check your state's rules, and ask the ambulance provider about financial assistance options."
+  },
+  result_air_ambulance: {
+    level: 'protected',
+    title: 'Likely protected',
+    desc: 'Air ambulance services are covered by the No Surprises Act, and providers are never allowed to ask you to waive this protection. You should only owe your normal in-network cost-sharing amount.'
+  },
+  result_standalone_clinic: {
+    level: 'maybe',
+    title: "The federal law's protections may not apply here",
+    desc: 'The No Surprises Act is generally built around hospitals, hospital outpatient departments, and ambulatory surgical centers. Standalone clinics and urgent care centers outside that structure often fall outside these specific protections. Your plan\'s regular out-of-network rules would likely apply instead — worth confirming with your insurer.'
+  },
+  result_facility_oon: {
+    level: 'maybe',
+    title: 'This likely was not a "surprise" bill under the law',
+    desc: "Since the facility itself was out-of-network and this wasn't an emergency, you likely knowingly chose an out-of-network facility — which these protections aren't designed to override. Check your plan's specific out-of-network benefits instead."
+  },
+  result_no_issue: {
+    level: 'protected',
+    title: 'No balance-billing issue here',
+    desc: "Since the facility and the provider were both in-network, this doesn't sound like a surprise-billing scenario at all. If your bill still doesn't match your EOB, that's more likely a billing or coding discrepancy — worth checking with our main reconciliation tool."
+  },
+  result_ancillary_protected: {
+    level: 'protected',
+    title: 'Likely protected — no waiver possible',
+    desc: "Ancillary providers like anesthesiologists, radiologists, and pathologists can never legally ask you to waive these protections, since you don't get a real choice in who treats you. You should only owe your normal in-network cost-sharing amount for this provider."
+  },
+  result_waived: {
+    level: 'maybe',
+    title: 'You may have validly waived this protection — or the waiver may not hold up',
+    desc: 'A written waiver can be valid for a non-emergency service where you knowingly chose an out-of-network provider yourself. But it only counts if specific requirements were met: given in writing, in advance, presented separately from other paperwork, and paired with a cost estimate. If any of those weren\'t done properly, the waiver may not be valid — worth reviewing exactly what you signed.'
+  },
+  result_no_consent: {
+    level: 'protected',
+    title: 'Likely still protected',
+    desc: 'Without a valid signed waiver meeting the strict notice-and-consent requirements, standard balance-billing protections should still apply. You should only owe your normal in-network cost-sharing amount.'
+  }
+};
+
+let history = ['start'];
+
+function renderQuestion(key){
+  const q = questions[key];
+  const card = document.getElementById('quizCard');
+  card.innerHTML = `
+    <div class="quiz-progress">${q.progress}</div>
+    <div class="quiz-question">${q.q}</div>
+    <div class="quiz-options">
+      ${q.options.map((o, i) => `<button type="button" class="quiz-opt" data-next="${o.next}">${o.label}</button>`).join('')}
+    </div>
+    ${history.length > 1 ? '<button type="button" class="quiz-back" id="quizBack">← Back</button>' : ''}
+  `;
+}
+
+function renderResult(key){
+  const r = results[key];
+  const card = document.getElementById('quizCard');
+  const unlocked = isUnlocked();
+
+  const letterSection = r.level === 'protected' ? `
+    <h3 style="margin-top:24px; color:var(--teal-deep); font-family:'Fraunces',serif; font-size:1.15rem;">Generate a notice letter citing this protection</h3>
+    ${unlocked ? `
+      <div class="letter-box">
+        <textarea readonly id="noticeLetterText"></textarea>
+      </div>
+      <div style="margin-top:10px;"><button type="button" class="btn-sm" id="copyNoticeLetter">Copy letter</button></div>
+    ` : `
+      <div class="letter-locked">
+        <div class="lt-text"><strong>🔒 Generate a personalized notice letter</strong>Included with the Full Report.</div>
+        <a href="/#pricing" class="btn-sm">Unlock — $9.99</a>
+      </div>
+      <p style="font-size:.82rem; color:var(--ink-soft); margin-top:8px;">Already purchased? Purchases are tied to this browser — just refresh this page after buying.</p>
+    `}
+  ` : '';
+
+  card.innerHTML = `
+    <div class="result-banner ${r.level}">
+      <strong>${r.title}</strong>
+      <p>${r.desc}</p>
+    </div>
+    ${letterSection}
+    <button type="button" class="quiz-back" id="quizRestart" style="margin-top:16px;">Start over</button>
+  `;
+
+  if (unlocked && r.level === 'protected'){
+    const today = new Date().toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'});
+    const letter = `${today}\n\nTo: [Provider / Billing Department]\nRe: Notice regarding No Surprises Act balance billing protections\n\nTo whom it may concern,\n\nI'm writing regarding a recent bill I received. Based on the circumstances of this care, I believe this charge is subject to federal No Surprises Act balance billing protections, which would limit my responsibility to my plan's standard in-network cost-sharing amount.\n\nI'm requesting:\n1. Confirmation of whether this charge was processed under No Surprises Act protections.\n2. If not, a corrected bill reflecting in-network cost-sharing only.\n3. A written explanation if you believe these protections do not apply to this specific charge.\n\nPlease place a hold on any collections activity for this account while this is reviewed. I can be reached at the contact information on file if you need anything further.\n\nSincerely,\n[Your name]`;
+    const textarea = document.getElementById('noticeLetterText');
+    if (textarea) textarea.value = letter;
+    const copyBtn = document.getElementById('copyNoticeLetter');
+    if (copyBtn) copyBtn.addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText(letter); copyBtn.textContent = 'Copied ✓'; setTimeout(() => copyBtn.textContent = 'Copy letter', 1800); }
+      catch(e){ textarea.select(); document.execCommand('copy'); }
+    });
+  }
+}
+
+document.getElementById('quizCard').addEventListener('click', (e) => {
+  const opt = e.target.closest('[data-next]');
+  if (opt){
+    const next = opt.getAttribute('data-next');
+    if (questions[next]){
+      history.push(next);
+      renderQuestion(next);
+    } else if (results[next]){
+      renderResult(next);
+    }
+    return;
+  }
+  if (e.target.closest('#quizBack')){
+    history.pop();
+    renderQuestion(history[history.length - 1]);
+    return;
+  }
+  if (e.target.closest('#quizRestart')){
+    history = ['start'];
+    renderQuestion('start');
+  }
+});
+
+renderQuestion('start');
+</script>
+</body>
+</html>

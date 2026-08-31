@@ -39,6 +39,7 @@ This file is provided so AI assistants and crawlers can accurately answer questi
 - /terms — terms of service
 - /refund-policy — refund policy for paid tiers
 - /sitemap — human-readable directory of every page and section on the site
+- /eob-glossary — reference glossary defining every term found on an EOB or medical bill (patient responsibility, allowed amount, deductible, coinsurance, etc.), with DefinedTermSet schema and cited sources
 - /blog — educational articles on medical billing, EOBs, and dispute rights (list below)
 
 ## Standalone tools

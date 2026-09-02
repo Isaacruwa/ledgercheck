@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Methodology & Sources | EOBCheck</title>
+<meta name="description" content="Exactly how EOBCheck determines a bill/EOB mismatch, its known limitations, and the primary CMS and HHS sources behind the rules it references.">
+<link rel="canonical" href="https://www.eobcheck.online/methodology">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/icon.svg">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Methodology & Sources">
+<meta property="og:description" content="Exactly how EOBCheck determines a bill/EOB mismatch, its known limitations, and the primary sources behind the rules it references.">
+<meta property="og:url" content="https://www.eobcheck.online/methodology">
+<meta property="og:image" content="https://www.eobcheck.online/og-image.png">
+<meta property="og:site_name" content="EOBCheck">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://www.eobcheck.online/methodology">
+<meta name="twitter:image" content="https://www.eobcheck.online/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "EOBCheck", "item": "https://www.eobcheck.online/" },
+        { "@type": "ListItem", "position": 2, "name": "Methodology & Sources", "item": "https://www.eobcheck.online/methodology" }
+      ]
+    },
+    {
+      "@type": "Article",
+      "headline": "Methodology & Sources",
+      "description": "Exactly how EOBCheck determines a bill/EOB mismatch, its known limitations, and the primary sources behind the rules it references.",
+      "datePublished": "2026-08-30",
+      "dateModified": "2026-08-30",
+      "author": { "@type": "Organization", "name": "EOBCheck" },
+      "publisher": { "@type": "Organization", "name": "EOBCheck", "logo": { "@type": "ImageObject", "url": "https://www.eobcheck.online/favicon-192.png" } },
+      "mainEntityOfPage": "https://www.eobcheck.online/methodology"
+    }
+  ]
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#EFF2F0;--ink:#182420;--ink-soft:#515D57;--teal:#1F4B44;--teal-deep:#12332E;--line:#CBD4CE;--card:#FBFCFB;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',system-ui,sans-serif;line-height:1.7;}
+  .wrap{max-width:700px;margin:0 auto;padding:0 24px;}
+  header{border-bottom:1px solid var(--line);padding:18px 0;}
+  .logo{font-family:'Fraunces',serif;font-weight:600;font-size:1.2rem;color:var(--teal-deep);text-decoration:none;display:flex;align-items:center;gap:.5em;}
+  .logo .mark{width:22px;height:22px;border-radius:6px;background:var(--teal);position:relative;flex:none;}
+  .logo .mark::before,.logo .mark::after{content:"";position:absolute;left:4px;right:4px;height:2px;background:var(--paper);border-radius:2px;}
+  .logo .mark::before{top:7px;} .logo .mark::after{top:12px;right:8px;}
+  .breadcrumb{font-size:.82rem;color:var(--ink-soft);margin:18px 0 4px;}
+  .breadcrumb a{color:var(--ink-soft);}
+  main{padding:28px 0 70px;}
+  h1{font-family:'Fraunces',serif;font-size:2.1rem;color:var(--teal-deep);margin:0 0 .3em;}
+  .byline{font-family:'IBM Plex Mono',monospace;font-size:.8rem;color:var(--ink-soft);margin-bottom:1.6em;}
+  h2{font-family:'Fraunces',serif;font-size:1.35rem;color:var(--teal-deep);margin:1.8em 0 .5em;}
+  p,li{color:var(--ink);}
+  a{color:var(--teal);}
+  .formula-box{background:var(--teal-deep);color:#fff;border-radius:10px;padding:20px 22px;margin:1.2em 0;font-family:'IBM Plex Mono',monospace;font-size:1.05rem;text-align:center;}
+  .threshold-row{display:flex;justify-content:space-between;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 18px;margin:.6em 0;}
+  .threshold-row .tlabel{font-weight:600;}
+  .threshold-row .tval{font-family:'IBM Plex Mono',monospace;color:var(--ink-soft);}
+  .source-item{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 18px;margin:.8em 0;}
+  .source-item .sname{font-weight:600;display:block;}
+  .source-item .surl{font-size:.85rem;word-break:break-all;}
+  footer{border-top:1px solid var(--line);padding:24px 0;font-size:.85rem;color:var(--ink-soft);}
+  footer a{color:var(--ink-soft);margin-right:16px;}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a href="/" class="logo"><span class="mark" aria-hidden="true"></span>EOBCheck</a></div></header>
+<main>
+  <div class="wrap">
+    <p class="breadcrumb"><a href="/">Home</a> / Methodology &amp; Sources</p>
+    <h1>Methodology &amp; Sources</h1>
+    <p class="byline">Written by: EOBCheck Editorial Team · Last reviewed: August 30, 2026</p>
+
+    <h2>The core calculation</h2>
+    <p>EOBCheck's reconciliation is arithmetic, not a legal judgment. The formula behind every result:</p>
+    <div class="formula-box">Variance = Amount owed per bill − Patient responsibility per EOB</div>
+
+    <h2>How the result is flagged</h2>
+    <div class="threshold-row"><span class="tlabel">Consistent</span><span class="tval">Variance under $1</span></div>
+    <div class="threshold-row"><span class="tlabel">Minor variance</span><span class="tval">$1 – $50</span></div>
+    <div class="threshold-row"><span class="tlabel">Unexplained variance</span><span class="tval">Over $50</span></div>
+    <p>Two additional checks run on the Full Report tier: whether the provider's total billed amount matches the EOB's total billed amount, and whether the EOB's own math is internally consistent (allowed amount minus insurance paid should equal patient responsibility).</p>
+
+    <h2>The Good Faith Estimate check</h2>
+    <p>If a Good Faith Estimate amount is entered, EOBCheck checks whether the bill exceeds it by $400 or more — the federal threshold for a Patient-Provider Dispute Resolution filing under the No Surprises Act. This is a mechanical threshold check, not a determination of legal eligibility, which depends on additional requirements (insurance status, filing windows) outside what a calculator can verify.</p>
+
+    <h2>Known limitations</h2>
+    <p>A flagged variance is a starting point for a conversation, not proof of an error. Common legitimate reasons a variance can appear even when nothing is actually wrong:</p>
+    <ul>
+      <li>The bill and EOB reflect different dates of service</li>
+      <li>Multiple claims were combined into or split across one bill</li>
+      <li>Multiple providers billed separately for the same visit</li>
+      <li>A claim is still pending or being reprocessed</li>
+      <li>A partial payment was already made and not yet reflected</li>
+      <li>Secondary insurance hasn't finished processing</li>
+      <li>An out-of-network situation applies different rules</li>
+      <li>The claim was corrected or resubmitted after the bill was printed</li>
+    </ul>
+    <p>EOBCheck's checklist and generated letter are written to account for this — asking for a written explanation rather than asserting the provider is wrong.</p>
+
+    <h2>Primary sources</h2>
+    <div class="source-item">
+      <span class="sname">CMS — No Surprises Act (official hub)</span>
+      <a class="surl" href="https://www.cms.gov/nosurprises" target="_blank" rel="noopener">https://www.cms.gov/nosurprises</a>
+    </div>
+    <div class="source-item">
+      <span class="sname">CMS — Understand Your Rights Against Surprise Medical Bills</span>
+      <a class="surl" href="https://www.cms.gov/newsroom/fact-sheets/no-surprises-understand-your-rights-against-surprise-medical-bills" target="_blank" rel="noopener">https://www.cms.gov/newsroom/fact-sheets/no-surprises-understand-your-rights-against-surprise-medical-bills</a>
+    </div>
+    <div class="source-item">
+      <span class="sname">Medicare.gov — Explanation of Benefits (EOB)</span>
+      <a class="surl" href="https://www.medicare.gov/basics/forms-publications-mailings/mailings/costs-and-coverage/explanation-of-benefits" target="_blank" rel="noopener">https://www.medicare.gov/basics/forms-publications-mailings/mailings/costs-and-coverage/explanation-of-benefits</a>
+    </div>
+
+    <p style="margin-top:1.6em;">See also our <a href="/about-eobcheck">About page</a> and <a href="/eob-glossary">EOB Glossary</a>.</p>
+  </div>
+</main>
+<footer><div class="wrap"><a href="/">Home</a><a href="/about-eobcheck">About</a><a href="/blog">Blog</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/sitemap">Site Directory</a></div></footer>
+</body>
+</html>

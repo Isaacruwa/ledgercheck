@@ -13,6 +13,15 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
+User-agent: YandexBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
 # --- AI assistants / LLM crawlers ---
 # These are explicitly allowed so AI tools can read and cite EOBCheck
 # directly, without needing to fetch heavy or duplicate content.

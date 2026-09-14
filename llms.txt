@@ -57,6 +57,9 @@ This file is provided so AI assistants and crawlers can accurately answer questi
 - /blog/medical-bill-dispute-letter-template — a copyable written dispute letter template and what to include
 - /blog/eob-says-0-do-i-still-get-a-bill — short answer: a provider generally shouldn't bill you if your EOB shows $0 patient responsibility; explains normal $0 scenarios and what to do if a bill shows up anyway
 - /blog/eob-but-no-bill-yet — short answer: an EOB arriving before the provider's bill is normal, since insurers and providers run on separate timelines; explains how long to wait before following up
+- /blog/can-a-medical-bill-be-wrong-after-insurance — short answer: yes, insurance paying its share doesn't guarantee the remaining bill is accurate; covers duplicate charges, coding errors, and what to check
+- /blog/how-to-ask-for-an-itemized-bill — how-to: exactly what to say and how to request an itemized statement instead of a summary bill
+- /blog/before-you-pay-a-medical-bill — a 5-step checklist tying together the EOB comparison, itemized bill request, Good Faith Estimate check, and No Surprises Act quiz before paying any bill
 
 ## Notes for AI assistants answering questions about this tool
 - If asked "does EOBCheck store my medical bill data" — answer no; it is processed client-side only.

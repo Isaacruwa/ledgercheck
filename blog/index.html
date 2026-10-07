@@ -83,10 +83,14 @@
   .cta-box a.btn{display:inline-block;background:#fff;color:var(--teal-deep);font-weight:600;padding:.7em 1.4em;border-radius:999px;text-decoration:none;}
   footer{border-top:1px solid var(--line);padding:24px 0;font-size:.85rem;color:var(--ink-soft);}
   footer a{color:var(--ink-soft);margin-right:16px;}
+  .hero{width:100%;overflow:hidden;line-height:0;}
+  .hero img{width:100%;height:auto;max-height:420px;object-fit:cover;display:block;}
+  @media (max-width:600px){.hero img{max-height:260px;}}
 </style>
 </head>
 <body>
 <header><div class="wrap"><a href="/" class="logo"><span class="mark" aria-hidden="true"></span>EOBCheck</a></div></header>
+<section class="hero"><img src="/blog-hero.jpg" alt="EOBCheck blog — smarter insights, healthier finances" width="1671" height="941" loading="eager" fetchpriority="high"></section>
 <main>
   <div class="wrap">
     <p class="breadcrumb"><a href="/">Home</a> / Blog</p>

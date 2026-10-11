@@ -8,7 +8,7 @@
   </url>
   <url>
     <loc>https://www.eobcheck.online/blog</loc>
-    <lastmod>2026-08-25</lastmod>
+    <lastmod>2026-10-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -69,6 +69,12 @@
   <url>
     <loc>https://www.eobcheck.online/blog/before-you-pay-a-medical-bill</loc>
     <lastmod>2026-09-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.eobcheck.online/blog/what-is-an-itemized-statement</loc>
+    <lastmod>2026-10-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

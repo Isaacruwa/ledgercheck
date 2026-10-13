@@ -1,15 +1,10 @@
 // Markdown content negotiation for eobcheck.online.
-// Runs ONLY when a request sends "Accept: text/markdown" (see matcher below).
+// Only requests that send "Accept: text/markdown" are changed; all others pass straight through.
 // It fetches the normal HTML page and returns a clean Markdown version of it.
 // Browsers and every other client keep getting the HTML page untouched.
 
 export const config = {
-  matcher: [
-    {
-      source: '/((?!api/|_vercel/)[^.]*)',
-      has: [{ type: 'header', key: 'accept', value: '.*text/markdown.*' }],
-    },
-  ],
+  matcher: '/((?!api/|_vercel/)[^.]*)',
 };
 
 const ENTITIES = {
@@ -142,6 +137,12 @@ function htmlToMarkdown(html, pageUrl) {
 }
 
 export default async function middleware(request) {
+  // Not asking for markdown: continue to the normal static page untouched.
+  const accept = request.headers.get('accept') || '';
+  if (!/text\/markdown/i.test(accept)) {
+    return new Response(null, { headers: { 'x-middleware-next': '1' } });
+  }
+
   const url = new URL(request.url);
   const method = request.method;
 

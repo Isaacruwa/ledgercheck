@@ -1,6 +1,11 @@
 # EOBCheck — robots.txt
 # General crawlers
+# Content Signals (https://contentsignals.org/): usage preferences for this site's content.
+# search = building a search index and showing links/snippets
+# ai-input = using content as input to AI answers (RAG, grounding, live retrieval)
+# ai-train = training or fine-tuning AI models
 User-agent: *
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
 Allow: /
 
 # --- Primary search engine crawlers (explicit, in addition to the wildcard above) ---

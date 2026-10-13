@@ -27,13 +27,28 @@ Allow: /
 # directly, without needing to fetch heavy or duplicate content.
 # See /llms.txt for a crawler-friendly summary built for this purpose.
 
-User-agent: GPTBot
+# AI search crawlers (fetch pages used in AI answers)
+User-agent: OAI-SearchBot
 Allow: /
 
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# User-triggered fetchers (retrieve a page when a user asks)
 User-agent: ChatGPT-User
 Allow: /
 
-User-agent: OAI-SearchBot
+User-agent: Claude-User
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# AI training crawlers
+User-agent: GPTBot
 Allow: /
 
 User-agent: ClaudeBot
@@ -43,12 +58,6 @@ User-agent: Claude-Web
 Allow: /
 
 User-agent: anthropic-ai
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: Perplexity-User
 Allow: /
 
 User-agent: Google-Extended
@@ -76,6 +85,9 @@ User-agent: Meta-ExternalAgent
 Allow: /
 
 User-agent: Meta-ExternalFetcher
+Allow: /
+
+User-agent: FacebookBot
 Allow: /
 
 User-agent: DuckAssistBot

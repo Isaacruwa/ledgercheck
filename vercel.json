@@ -3,6 +3,12 @@
   "trailingSlash": false,
   "headers": [
     {
+      "source": "/",
+      "headers": [
+        { "key": "Link", "value": "</llms.txt>; rel=\"describedby\"; type=\"text/plain\", </llms-full.txt>; rel=\"service-doc\"; type=\"text/plain\"" }
+      ]
+    },
+    {
       "source": "/sw.js",
       "headers": [
         { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
@@ -24,7 +30,8 @@
       "source": "/(.*)",
       "headers": [
         { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Vary", "value": "Accept" }
       ]
     }
   ]

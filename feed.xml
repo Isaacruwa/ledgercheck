@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>EOBCheck Blog</title>
+    <link>https://www.eobcheck.online/blog</link>
+    <description>Practical, plain-English guides on medical bills, EOBs, and how to dispute a charge.</description>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 18 Oct 2026 12:00:00 GMT</lastBuildDate>
+    <atom:link href="https://www.eobcheck.online/feed.xml" rel="self" type="application/rss+xml"/>
+    <image>
+      <url>https://www.eobcheck.online/favicon-512.png</url>
+      <title>EOBCheck Blog</title>
+      <link>https://www.eobcheck.online/blog</link>
+    </image>
+
+    <item>
+      <title>Is an EOB an Estimate? How to Read the Cost Numbers on Your EOB</title>
+      <link>https://www.eobcheck.online/blog/eob-cost-estimate-explained</link>
+      <guid isPermaLink="true">https://www.eobcheck.online/blog/eob-cost-estimate-explained</guid>
+      <pubDate>Sun, 18 Oct 2026 09:00:00 GMT</pubDate>
+      <description>No — an EOB is a record, not an estimate or a bill. What "patient responsibility" means, how it differs from a cost estimate, and a sample EOB broken down line by line.</description>
+      <enclosure url="https://www.eobcheck.online/og-image.png" length="43457" type="image/png"/>
+      <media:content url="https://www.eobcheck.online/og-image.png" medium="image" type="image/png" width="1200" height="630"/>
+    </item>
+
+    <item>
+      <title>What Is an Itemized Statement in Medical Billing?</title>
+      <link>https://www.eobcheck.online/blog/what-is-an-itemized-statement</link>
+      <guid isPermaLink="true">https://www.eobcheck.online/blog/what-is-an-itemized-statement</guid>
+      <pubDate>Sun, 11 Oct 2026 09:00:00 GMT</pubDate>
+      <description>What an itemized statement is, how it differs from a summary bill, and when you need one.</description>
+      <enclosure url="https://www.eobcheck.online/og-image.png" length="43457" type="image/png"/>
+      <media:content url="https://www.eobcheck.online/og-image.png" medium="image" type="image/png" width="1200" height="630"/>
+    </item>
+
+    <item>
+      <title>What to Do Before You Pay a Medical Bill</title>
+      <link>https://www.eobcheck.online/blog/before-you-pay-a-medical-bill</link>
+      <guid isPermaLink="true">https://www.eobcheck.online/blog/before-you-pay-a-medical-bill</guid>
+      <pubDate>Wed, 02 Sep 2026 14:00:00 GMT</pubDate>
+      <description>A 5-step checklist tying together every EOBCheck resource before you send payment.</description>
+      <enclosure url="https://www.eobcheck.online/og-image.png" length="43457" type="image/png"/>
+      <media:content url="https://www.eobcheck.online/og-image.png" medium="image" type="image/png" width="1200" height="630"/>
+    </item>
+
+    <item>
+      <title>How to Ask for an Itemized Medical Bill</title>
+      <link>https://www.eobcheck.online/blog/how-to-ask-for-an-itemized-bill</link>
+      <guid isPermaLink="true">https://www.eobcheck.online/blog/how-to-ask-for-an-itemized-bill</guid>
+      <pubDate>Wed, 02 Sep 2026 13:00:00 GMT</pubDate>
+      <description>Exactly what to say to request an itemized statement instead of a summary bill.</description>
+      <enclosure url="https://www.eobcheck.online/og-image.png" length="43457" type="image/png"/>
+      <media:content url="https://www.eobcheck.online/og-image.png" medium="image" type="image/png" width="1200" height="630"/>
+    </item>
+
+    <item>
+      <title>Can a Medical Bill Be Wrong After Insurance Pays?</title>
+      <link>https://www.eobcheck.online/blog/can-a-medical-bill-be-wrong-after-insurance</link>
+      <guid isPermaLink="true">https://www.eobcheck.online/blog/can-a-medical-bill-be-wrong-after-insurance</guid>
+      <pubDate>Wed, 02 Sep 2026 12:00:00 GMT</pubDate>
+      <description>Yes — insurance paying its share doesn't guarantee the remaining bill is accurate.</description>
+      <enclosure url="https://www.eobcheck.online/og-image.png" length="43457" type="image/png"/>
+      <media:content url="https://www.eobcheck.online/og-image.png" medium="image" type="image/png" width="1200" height="630"/>
+    </item>
+
+    <item>
+      <title>I Got an EOB But No Bill Yet — What's Going On?</title>
+      <link>https://www.eobcheck.online/blog/eob-but-no-bill-yet</link>
+      <guid isPermaLink="true">https://www.eobcheck.online/blog/eob-but-no-bill-yet</guid>
+      <pubDate>Wed, 02 Sep 2026 11:00:00 GMT</pubDate>
+      <description>Why the timing gap between your EOB and your provider's bill is completely normal — and when to actually follow up.</description>
+      <enclosure url="https://www.eobcheck.online/og-image.png" length="43457" type="image/png"/>
+      <media:content url="https://www.eobcheck.online/og-image.png" medium="image" type="image/png" width="1200" height="630"/>
+    </item>
+
+    <item>
+      <title>EOB Says $0 — Do I Still Get a Bill?</title>
+      <link>https://www.eobcheck.online/blog/eob-says-0-do-i-still-get-a-bill</link>
+      <guid isPermaLink="true">https://www.eobcheck.online/blog/eob-says-0-do-i-still-get-a-bill</guid>
+      <pubDate>Wed, 02 Sep 2026 10:00:00 GMT</pubDate>
+      <description>When a $0 EOB is normal, and when a bill afterward is worth questioning.</description>
+      <enclosure url="https://www.eobcheck.online/og-image.png" length="43457" type="image/png"/>
+      <media:content url="https://www.eobcheck.online/og-image.png" medium="image" type="image/png" width="1200" height="630"/>
+    </item>
+
+    <item>
+      <title>How to Write a Medical Bill Dispute Letter (Template + What to Include)</title>
+      <link>https://www.eobcheck.online/blog/medical-bill-dispute-letter-template</link>
+      <guid isPermaLink="true">https://www.eobcheck.online/blog/medical-bill-dispute-letter-template</guid>
+      <pubDate>Wed, 02 Sep 2026 09:00:00 GMT</pubDate>
+      <description>A free, copyable dispute letter template, plus exactly what to include and what to leave out.</description>
+      <enclosure url="https://www.eobcheck.online/og-image.png" length="43457" type="image/png"/>
+      <media:content url="https://www.eobcheck.online/og-image.png" medium="image" type="image/png" width="1200" height="630"/>
+    </item>
+
+    <item>
+      <title>Medical Bill Higher Than Your EOB Says You Owe? Here's Exactly What to Do</title>
+      <link>https://www.eobcheck.online/blog/bill-higher-than-eob</link>
+      <guid isPermaLink="true">https://www.eobcheck.online/blog/bill-higher-than-eob</guid>
+      <pubDate>Tue, 25 Aug 2026 12:00:00 GMT</pubDate>
+      <description>A calm, ordered 7-step plan for what to actually do when a bill and an EOB disagree — before you pay anything.</description>
+      <enclosure url="https://www.eobcheck.online/og-image.png" length="43457" type="image/png"/>
+      <media:content url="https://www.eobcheck.online/og-image.png" medium="image" type="image/png" width="1200" height="630"/>
+    </item>
+
+    <item>
+      <title>The Good Faith Estimate Dispute Process: How the $400 Rule Actually Works</title>
+      <link>https://www.eobcheck.online/blog/good-faith-estimate-dispute-guide</link>
+      <guid isPermaLink="true">https://www.eobcheck.online/blog/good-faith-estimate-dispute-guide</guid>
+      <pubDate>Tue, 25 Aug 2026 11:00:00 GMT</pubDate>
+      <description>Who qualifies for a federal Good Faith Estimate dispute, how the $400 threshold is actually calculated, and how to file.</description>
+      <enclosure url="https://www.eobcheck.online/og-image.png" length="43457" type="image/png"/>
+      <media:content url="https://www.eobcheck.online/og-image.png" medium="image" type="image/png" width="1200" height="630"/>
+    </item>
+
+    <item>
+      <title>How to Read an Explanation of Benefits (EOB): A Line-by-Line Guide</title>
+      <link>https://www.eobcheck.online/blog/how-to-read-an-eob</link>
+      <guid isPermaLink="true">https://www.eobcheck.online/blog/how-to-read-an-eob</guid>
+      <pubDate>Tue, 25 Aug 2026 10:00:00 GMT</pubDate>
+      <description>A field-by-field walkthrough of every number on an EOB — billed amount, allowed amount, patient responsibility — in plain English.</description>
+      <enclosure url="https://www.eobcheck.online/og-image.png" length="43457" type="image/png"/>
+      <media:content url="https://www.eobcheck.online/og-image.png" medium="image" type="image/png" width="1200" height="630"/>
+    </item>
+
+    <item>
+      <title>Why Doesn't My Medical Bill Match My EOB? 7 Real Reasons</title>
+      <link>https://www.eobcheck.online/blog/why-medical-bill-doesnt-match-eob</link>
+      <guid isPermaLink="true">https://www.eobcheck.online/blog/why-medical-bill-doesnt-match-eob</guid>
+      <pubDate>Tue, 25 Aug 2026 09:00:00 GMT</pubDate>
+      <description>The 7 most common reasons a provider bill and an insurance EOB disagree — from balance billing to simple timing issues — and what to actually do about each one.</description>
+      <enclosure url="https://www.eobcheck.online/og-image.png" length="43457" type="image/png"/>
+      <media:content url="https://www.eobcheck.online/og-image.png" medium="image" type="image/png" width="1200" height="630"/>
+    </item>
+  </channel>
+</rss>

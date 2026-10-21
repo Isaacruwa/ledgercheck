@@ -1,0 +1,105 @@
+name: IndexNow
+
+# Pings IndexNow (Bing, Yandex, Naver, Seznam, Yep and others) so new and updated
+# pages get crawled quickly. Google does not support IndexNow; it uses sitemap.xml.
+#
+# - On every push to main that changes an .html page: submits just those pages.
+# - Manual run (Actions tab > IndexNow > Run workflow): submit "all" sitemap URLs.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**.html'
+      - 'sitemap.xml'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'all = every URL in sitemap.xml, changed = pages changed in the latest push'
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - changed
+
+permissions:
+  contents: read
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    env:
+      HOST: www.eobcheck.online
+      KEY: 21580cd257edb28e4aa83cf0e8e29cf3
+      MODE: ${{ github.event.inputs.mode || 'changed' }}
+      BEFORE: ${{ github.event.before }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Wait for the Vercel deploy to go live
+        if: github.event_name == 'push'
+        run: sleep 90
+
+      - name: Build URL list and submit to IndexNow
+        run: |
+          python3 - <<'PY'
+          import json, os, re, subprocess, sys, urllib.request, urllib.error
+
+          host = os.environ['HOST']
+          key = os.environ['KEY']
+          mode = os.environ.get('MODE', 'changed')
+
+          sitemap = open('sitemap.xml', encoding='utf-8').read()
+          sitemap_urls = re.findall(r'<loc>\s*([^<\s]+)\s*</loc>', sitemap)
+
+          if mode == 'all':
+              urls = list(sitemap_urls)
+          else:
+              before = os.environ.get('BEFORE', '')
+              base = before if before and set(before) != {'0'} else 'HEAD~1'
+              try:
+                  out = subprocess.check_output(['git', 'diff', '--name-only', base, 'HEAD'], text=True)
+              except Exception:
+                  out = subprocess.check_output(['git', 'diff', '--name-only', 'HEAD~1', 'HEAD'], text=True)
+              urls = []
+              for f in out.split():
+                  if not f.endswith('.html') or f.startswith('embed/'):
+                      continue
+                  p = f[:-5]
+                  if p == 'index':
+                      u = 'https://' + host + '/'
+                  elif p.endswith('/index'):
+                      u = 'https://' + host + '/' + p[:-6]
+                  else:
+                      u = 'https://' + host + '/' + p
+                  if u in sitemap_urls and u not in urls:
+                      urls.append(u)
+
+          print('mode:', mode, '| urls:', len(urls))
+          for u in urls:
+              print('  ', u)
+          if not urls:
+              print('Nothing to submit.')
+              sys.exit(0)
+
+          payload = {
+              'host': host,
+              'key': key,
+              'keyLocation': 'https://' + host + '/' + key + '.txt',
+              'urlList': urls[:10000],
+          }
+          req = urllib.request.Request(
+              'https://api.indexnow.org/indexnow',
+              data=json.dumps(payload).encode('utf-8'),
+              headers={'Content-Type': 'application/json; charset=utf-8'},
+              method='POST',
+          )
+          try:
+              r = urllib.request.urlopen(req, timeout=30)
+              print('IndexNow response:', r.status)
+          except urllib.error.HTTPError as e:
+              print('IndexNow error:', e.code, e.read().decode('utf-8', 'replace'))
+              sys.exit(1)
+          PY

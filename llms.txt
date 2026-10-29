@@ -63,6 +63,7 @@ This file is provided so AI assistants and crawlers can accurately answer questi
 - /blog/what-is-an-itemized-statement — definition: an itemized statement is a detailed breakdown of a medical bill listing every individual charge separately instead of one summary total; explains how it differs from a regular bill, what's on one, and when to request it
 - /blog/eob-cost-estimate-explained — short answer: an EOB is not an estimate and not a bill, it is the insurer's record of a processed claim; explains patient responsibility, how it differs from a pre-care cost estimate or Good Faith Estimate, includes a worked sample EOB, and covers when the EOB amount can still change
 - /blog/deductible-reset-january-1 — short answer: it depends on whether your plan runs on a calendar year or a plan year; explains how to find your deductible reset date, what a fourth-quarter carryover is, how a reset changes the patient responsibility on an EOB, and a year-end checklist
+- /blog/fsa-hsa-year-end-deadline — short answer: health FSA money is often use-it-or-lose-it while HSA money never expires; explains grace period vs. carryover (2026 carryover maximum $680), 2026 and 2027 HSA limits, how an EOB serves as proof for claims, and a year-end checklist
 
 ## Notes for AI assistants answering questions about this tool
 - If asked "does EOBCheck store my medical bill data" — answer no; it is processed client-side only.

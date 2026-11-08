@@ -737,6 +737,43 @@
       </div>
     </div>
   </section>
+
+  <section id="guides">
+    <style>
+      .guide-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+      .guide{display:block; text-decoration:none; color:var(--ink); transition:border-color .15s;}
+      .guide:hover{border-color:var(--teal);}
+      .guide strong{display:block; font-family:var(--font-display); font-size:1.05rem; color:var(--teal-deep); margin-bottom:6px;}
+      .guide span{font-size:.9rem; color:var(--ink-soft);}
+      .guides-more{margin-top:22px;}
+      @media (max-width:860px){.guide-grid{grid-template-columns:1fr 1fr;}}
+      @media (max-width:560px){.guide-grid{grid-template-columns:1fr;}}
+    </style>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Guides &amp; free tools</span>
+        <h2>Learn how to read and check your medical bill</h2>
+      </div>
+      <div class="guide-grid">
+        <a class="card guide" href="/blog/bill-higher-than-eob"><strong>Bill higher than your EOB?</strong><span>A 7-step plan for what to do before you pay.</span></a>
+        <a class="card guide" href="/blog/why-medical-bill-doesnt-match-eob"><strong>Why your bill doesn't match your EOB</strong><span>The 7 most common reasons and what to do about each.</span></a>
+        <a class="card guide" href="/blog/how-to-read-an-eob"><strong>How to read an EOB</strong><span>A line-by-line guide to every number.</span></a>
+        <a class="card guide" href="/blog/eob-cost-estimate-explained"><strong>Is an EOB an estimate?</strong><span>How estimates, EOBs and bills differ, with a sample.</span></a>
+        <a class="card guide" href="/blog/eob-says-0-do-i-still-get-a-bill"><strong>EOB says $0: do you still get a bill?</strong><span>When a $0 EOB is normal and when to question it.</span></a>
+        <a class="card guide" href="/blog/can-a-medical-bill-be-wrong-after-insurance"><strong>Can a bill be wrong after insurance pays?</strong><span>Yes. Here is what to check.</span></a>
+        <a class="card guide" href="/blog/before-you-pay-a-medical-bill"><strong>Before you pay a medical bill</strong><span>A 5-step checklist to run first.</span></a>
+        <a class="card guide" href="/blog/how-to-ask-for-an-itemized-bill"><strong>How to ask for an itemized bill</strong><span>Exactly what to say to the billing office.</span></a>
+        <a class="card guide" href="/blog/what-is-an-itemized-statement"><strong>What is an itemized statement?</strong><span>What's on one and when you need it.</span></a>
+        <a class="card guide" href="/blog/medical-bill-dispute-letter-template"><strong>Dispute letter template</strong><span>Free, and ready to copy.</span></a>
+        <a class="card guide" href="/blog/good-faith-estimate-dispute-guide"><strong>The $400 Good Faith Estimate rule</strong><span>Who qualifies and how to file.</span></a>
+        <a class="card guide" href="/blog/deductible-reset-january-1"><strong>Does your deductible reset on January 1?</strong><span>How to find your reset date before year-end.</span></a>
+        <a class="card guide" href="/blog/fsa-hsa-year-end-deadline"><strong>FSA and HSA year-end deadlines</strong><span>What expires and what rolls over.</span></a>
+        <a class="card guide" href="/tools/good-faith-estimate-calculator"><strong>Good Faith Estimate calculator</strong><span>Free tool: check the $400 threshold.</span></a>
+        <a class="card guide" href="/tools/no-surprises-act-quiz"><strong>No Surprises Act quiz</strong><span>Check whether balance billing protections apply.</span></a>
+      </div>
+      <p class="guides-more"><a href="/blog">See all guides &rarr;</a></p>
+    </div>
+  </section>
 </main>
 
 <footer>
@@ -755,6 +792,8 @@
       <a href="/terms">Terms</a>
       <a href="/refund-policy">Refunds</a>
       <a href="/eob-glossary">Glossary</a>
+      <a href="/tools/good-faith-estimate-calculator">Calculator</a>
+      <a href="/tools/no-surprises-act-quiz">Quiz</a>
       <a href="/about-eobcheck">About</a>
       <a href="/methodology">Methodology</a>
       <a href="/sitemap">Site Directory</a>
